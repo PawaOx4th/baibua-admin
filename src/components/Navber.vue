@@ -1,23 +1,21 @@
 <template>
-  <v-app id="navber">
-    <nav>
-      <v-app-bar app color="primary">
-        <v-app-bar-nav-icon
-          @click.stop="tab = !tab"
-          class="white--text"
-        ></v-app-bar-nav-icon>
-        <v-toolbar-title class="white--text">{{ AppName }}</v-toolbar-title>
+  <nav>
+    <v-app-bar app color="primary">
+      <v-app-bar-nav-icon
+        @click.stop="tab = !tab"
+        class="white--text"
+      ></v-app-bar-nav-icon>
+      <v-toolbar-title class="white--text">{{ AppName }}</v-toolbar-title>
 
-        <v-spacer></v-spacer>
+      <v-spacer></v-spacer>
 
-        <!-- <v-btn target="_blank">
+      <!-- <v-btn target="_blank">
           <span class="mr-2">Sign Out</span>
 
           <v-icon color="red" size="30px">all_inbox</v-icon>
         </v-btn> -->
-        <TopHeader />
-      </v-app-bar>
-    </nav>
+      <TopHeader />
+    </v-app-bar>
     <v-navigation-drawer app color="white" v-model="tab" temporary>
       <v-list>
         <v-list-item>
@@ -49,7 +47,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-  </v-app>
+  </nav>
 </template>
 
 <script>
@@ -66,13 +64,13 @@ export default {
         {
           title: "Font",
           icon: "mdi-view-dashboard",
-          route: "/font",
+          route: "/dashbord",
           stusus: "success"
         },
         {
-          title: "Botton",
+          title: "กิจกรรม",
           icon: "mdi-image",
-          route: "/button",
+          route: "/event",
           stusus: "warning"
         },
         {
