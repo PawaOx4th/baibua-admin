@@ -16,7 +16,8 @@
         </v-btn> -->
       <TopHeader />
     </v-app-bar>
-    <v-navigation-drawer app color="white" v-model="tab" temporary>
+
+    <v-navigation-drawer app color="blue" v-model="tab" temporary>
       <v-list>
         <v-list-item>
           <v-list-item-avatar>
@@ -24,25 +25,29 @@
           </v-list-item-avatar>
 
           <v-list-item-content>
-            <v-list-item-title>John Leider</v-list-item-title>
+            <v-list-item-title class="white--text"
+              >John Leider</v-list-item-title
+            >
           </v-list-item-content>
         </v-list-item>
         <!--  -->
-        <v-divider></v-divider>
+        <v-divider class="mb-12  mt-8 _18mp white "></v-divider>
         <!--  -->
         <v-list-item
-          class="mt-5"
+          class=""
           v-for="(item, index) in menu"
           :key="index"
           link
           :to="item.route"
         >
           <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon class="white--text">{{ item.icon }}</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <v-list-item-title class="white--text">{{
+              item.title
+            }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -62,7 +67,7 @@ export default {
       tab: false,
       menu: [
         {
-          title: "Font",
+          title: "ข้อมูลการใช้งาน",
           icon: "mdi-view-dashboard",
           route: "/dashbord",
           stusus: "success"
@@ -74,25 +79,25 @@ export default {
           stusus: "warning"
         },
         {
-          title: "Display",
+          title: "ตารางเรียน",
           icon: "mdi-help-box",
           route: "/display",
           stusus: "info"
         },
         {
-          title: "Text Color",
+          title: "ปฎิทินการศึกษา",
           icon: "mdi-help-box",
           route: "/textcolor",
           stusus: "error"
         },
         {
-          title: "Grid System",
+          title: "กลุ่ม",
           icon: "mdi-help-box",
           route: "/grid",
           stusus: "success"
         },
         {
-          title: "Pop Up",
+          title: "ตั้งค่า",
           icon: "mdi-help-box",
           route: "/popup",
           stusus: "success"
