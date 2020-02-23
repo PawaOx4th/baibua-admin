@@ -3,9 +3,9 @@
     <!-- <SignIn /> -->
     <!-- <SignUp /> -->
 
-    <router-link to="/home">Home</router-link>
+    <!-- <router-link to="/home">Home</router-link> -->
     <!-- <router-link to="/signup">Sign Up</router-link> -->
-    <router-link to="/singin">Sign In</router-link>
+    <!-- <router-link to="/singin">Sign In</router-link> -->
 
     <v-container>
       <router-view></router-view>

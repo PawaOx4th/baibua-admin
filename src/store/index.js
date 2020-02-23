@@ -7,7 +7,9 @@ import "firebase/auth";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
+  state: {
+    appName: "Baibua Admin"
+  },
   mutations: {},
   actions: {
     autoSignIn({ commit }, payload) {

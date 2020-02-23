@@ -20,6 +20,7 @@
                   name=""
                   class="input"
                   placeholder="Email"
+                  outlined
                 />
               </div>
               <div class="title">
@@ -29,6 +30,7 @@
                   type="password"
                   class="input"
                   placeholder="Password"
+                  outlined
                 />
               </div>
               <button type="submit" value="sunmit" class="btn">Login</button>
@@ -64,6 +66,7 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then(
+          // eslint-disable-next-line no-unused-vars
           user => {
             this.$router.replace("/home");
           },

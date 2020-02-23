@@ -1,18 +1,24 @@
 <template>
-  <div class="home">
-    <hr />
-    <h1>Home</h1>
-    <TopHeader />
-  </div>
+  <v-app id="home">
+    <Navber />
+    <v-content>
+      <router-view> </router-view>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-import TopHeader from "../components/Top-Header";
+// import TopHeader from "../components/Top-Header";
+import Navber from "../components/Navber";
 
 export default {
-  name: "Home",
+  name: "home",
   components: {
-    TopHeader
+    // TopHeader
+
+    Navber
   }
 };
 </script>
+
+<style></style>

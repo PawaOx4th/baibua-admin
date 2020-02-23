@@ -1,11 +1,11 @@
 <template>
   <div id="topheader">
-    Logged in
+    <!-- Logged in
     <span v-if="loggedIn">Yes</span>
-    <span v-else>No</span>
+    <span v-else>No</span> -->
 
     <div>
-      <v-btn color="success" @click="signOut">Sign Out</v-btn>
+      <v-btn color="error" @click="signOut">Sign Out</v-btn>
     </div>
   </div>
 </template>
