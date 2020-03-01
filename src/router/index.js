@@ -21,10 +21,11 @@ const routes = [
   //   }
   // },
   {
-    path: "/",
+    path: "/dashbord",
     component: Home,
     name: "home",
     auth: true,
+    meta: { requiresAuth: true },
     children: [
       { path: "/event", component: Event, name: "event" },
       { path: "/dashbord", component: Dashbord, name: "dashbord" }
@@ -36,16 +37,16 @@ const routes = [
   //   component: Home
   // },
   {
-    path: "/singin",
+    path: "/",
     name: "singin",
     component: SignIn
   },
-  {
-    path: "/home",
-    name: "home",
-    component: Home,
-    meta: { requiresAuth: true }
-  },
+  // {
+  //   path: "/home",
+  //   name: "home",
+  //   component: Home,
+  //   meta: { requiresAuth: true }
+  // },
   {
     path: "/signup",
     name: "signup",

@@ -47,7 +47,8 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer />
-                <v-btn color="primary" @click="pressed">Login</v-btn>
+                <v-btn color="info" @click="pressed">Login</v-btn>
+                <!-- <v-btn color="primary" @click.alt="defultData">Login</v-btn> -->
               </v-card-actions>
             </v-card>
           </v-col>
@@ -91,6 +92,11 @@ export default {
           this.email = "";
           this.password = "";
         });
+    },
+    defultData() {
+      this.email = "aa@gmail.com";
+      this.password = "aaaaaa";
+      this.pressed();
     }
   }
 };
