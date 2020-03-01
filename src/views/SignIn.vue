@@ -38,6 +38,7 @@
                     type="password"
                     v-model="password"
                     outlined
+                    @keyup.enter="pressed"
                   />
 
                   <div class="error--text" v-if="error">
