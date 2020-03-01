@@ -209,18 +209,33 @@
             >
               <!-- //**** Card **** -->
               <v-container v-for="(event, index) in listFilter" :key="index">
-                <v-card xs12 class="pa-1">
-                  <v-card-title class="" :style="titleCard">
+                <v-card xs12 class="pa-1" color="blue">
+                  <v-card-title class="white--text" :style="titleCard">
                     {{ event.Topic }}
                   </v-card-title>
 
-                  <v-card-subtitle>
-                    <v-chip>{{ event.Type }} </v-chip>
+                  <v-card-subtitle class="white--text">
+                    <v-chip
+                      :class="`${vChipColor} white--text `"
+                      v-on="chipColor(event.Type)"
+                    >
+                      {{ event.Type }}
+                    </v-chip>
                     {{ event.Date[0] }} {{ event.Date[1] }} {{ event.Date[2] }}
                   </v-card-subtitle>
-                  <v-card-text>
-                    {{ event.Description }}
-                  </v-card-text>
+                  <v-btn icon @click="show = !show">
+                    <v-icon>{{
+                      show ? "mdi-chevron-up" : "mdi-chevron-down"
+                    }}</v-icon>
+                  </v-btn>
+                  <v-expand-transition>
+                    <div v-show="show">
+                      <v-divider></v-divider>
+                      <v-card-text class="white--text">
+                        {{ event.Description }}
+                      </v-card-text>
+                    </div>
+                  </v-expand-transition>
                 </v-card>
               </v-container>
             </v-row>
@@ -253,10 +268,13 @@ export default {
       eventAll: [],
       offsetTop: 0,
       isValid: true,
+      show: false,
       titleCard: {
         fontSize: "16px"
       },
       items: ["คณะ", "มหาวิทยาลัย", "จิตอาสา"],
+      itemColor: ["green", "yellow", "pink"],
+      vChipColor: "",
       rulers: {
         required: value => !!value || "กรุณากรอกชื่อกิจกรรม/โครงการ",
         requiredItem: value => !!value || "กรุณาระบุหมวดหมู่ กิจกรรม/โครงการ",
@@ -281,11 +299,9 @@ export default {
       } else {
         return this.eventAll;
       }
-    },
-    reversedEvent() {
-      return this.listFilter.slice().reverse;
     }
   },
+  mounted() {},
   methods: {
     sort(e) {
       this.eventAll.sort((a, b) => (a[e] < b[e] ? -1 : 1));
@@ -333,6 +349,16 @@ export default {
       this.date = "";
       this.time = "";
       this.item = "";
+    },
+    chipColor(e) {
+      console.log(e);
+      if (e == this.items[0]) {
+        this.vChipColor = this.itemColor[0];
+      } else if (e == this.items[1]) {
+        this.vChipColor = this.itemColor[1];
+      } else {
+        this.vChipColor = this.itemColor[2];
+      }
     }
   }
 };
