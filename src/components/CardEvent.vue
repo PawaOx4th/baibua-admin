@@ -1,35 +1,37 @@
 <template>
-  <div id="cardEvent">
-    <v-container
-      id="scroll-target"
-      style="max-height: 63%"
-      class="overflow-y-auto"
-    >
-      <v-row
-        v-scroll:#scroll-target="onScroll"
-        align="center"
-        justify="center"
-        style="height: 1000px"
-      >
-        <!-- //**** Card **** -->
-        <v-container v-for="(event, index) in listFilter" :key="index">
-          <v-card xs12 class="pa-1">
-            <v-card-title class="" :style="titleCard">
-              {{ event.Topic }}
-            </v-card-title>
-
-            <v-card-subtitle>
-              <v-chip>{{ event.Type }} </v-chip>
-              {{ event.Date[0] }} {{ event.Date[1] }} {{ event.Date[2] }}
-            </v-card-subtitle>
-            <v-card-text>
-              {{ event.Description }}
-            </v-card-text>
-          </v-card>
+  <v-app id="cardEvent">
+    <v-flex style="width: 700px" ml-3>
+      <v-container>
+        <v-container
+          id="scroll-target"
+          style="height: 700px"
+          class="overflow-y-auto black"
+        >
+          <v-col v-scroll:#scroll-target="onScroll" style="height: 700px">
+            <v-row
+              v-for="(item, index) in eventAll"
+              :key="index"
+              align="center"
+            >
+              <v-card class="mb-5" width="1300">
+                <v-card-title>
+                  {{ item.Topic }}
+                </v-card-title>
+                <v-chip class="green ml-3">{{ item.Type }}</v-chip>
+                <v-card-subtitle>
+                  {{ item.Date[0] }}
+                  {{ item.Date[1] }}
+                  {{ item.Date[2] }}
+                </v-card-subtitle>
+                <v-divider></v-divider>
+                <v-card-text>{{ item.Description }}</v-card-text>
+              </v-card>
+            </v-row>
+          </v-col>
         </v-container>
-      </v-row>
-    </v-container>
-  </div>
+      </v-container>
+    </v-flex>
+  </v-app>
 </template>
 
 <script>
@@ -37,47 +39,50 @@ import axios from "axios";
 
 export default {
   name: "cardEvent",
-  created() {
-    this.fetchEvent();
-  },
   data() {
     return {
-      titleCard: {
-        fontSize: "16px"
-      },
-      eventAll: []
+      eventAll: [],
+      itemColor: ["pink", "green", "blue"],
+      type: ["คณะ", "มหาลัย", "มหาวิทยาลัย"],
+      vChipColor: ""
     };
   },
-  computed: {
-    listFilter() {
-      if (this.search) {
-        return this.eventAll.filter(item => {
-          return this.search
-            .toLowerCase()
-            .split("")
-            .every(v => item.Topic.toLowerCase().includes(v));
-        });
-      } else {
-        return this.eventAll;
-      }
-    },
-    reversedEvent() {
-      return this.listFilter.slice().reverse;
-    }
+  async mounted() {
+    let eventData = await axios.get(
+      "https://us-central1-newagent-47c20.cloudfunctions.net/api/news"
+    );
+    this.eventAll = eventData.data;
+  },
+  created() {
+    this.listFilter;
   },
   methods: {
     onScroll(e) {
       this.offsetTop = e.target.scrollTop;
     },
-    fetchEvent() {
-      axios
-        .get("https://us-central1-newagent-47c20.cloudfunctions.net/api/news")
-        .then(response => {
-          const resData = response.data;
-          this.eventAll = resData;
-          // console.log(resData);
-        });
+
+    async fetchEvent() {
+      axios.get().then(response => {
+        const resData = response.data;
+        this.eventAll = resData;
+
+        console.log(resData);
+      });
     }
+
+    // chipColor(e) {
+    //   // console.log(e);
+    //   if (e == this.type[0]) {
+    //     this.vChipColor = this.itemColor[0];
+    //     console.log("Color " + this.vChipColor);
+    //   } else if (e == this.type[1]) {
+    //     this.vChipColor = this.itemColor[1];
+    //     console.log("Color " + this.vChipColor);
+    //   } else {
+    //     this.vChipColor = this.itemColor[2];
+    //     console.log("Color " + this.vChipColor);
+    //   }
+    // }
   }
 };
 </script>
