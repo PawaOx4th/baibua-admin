@@ -5,7 +5,7 @@
       <!-- <v-btn @click="fetchEvent" color="success">Print Type</v-btn> -->
       <v-layout class="d-flex" justify-space-between="true" block>
         <!-- -------------------------------------------------------------------------------- -->
-        <Event @onSubmit="addEvent" />
+        <EventAdd @onSubmit="addEvent" />
 
         <CardEvent :event="events" />
         <!-- -------------------------------------------------------------------------------- -->
@@ -17,13 +17,13 @@
 <script>
 import axios from "axios";
 
-import Event from "@/components/Event.vue";
+import EventAdd from "@/components/EventAdd.vue";
 import CardEvent from "@/components/CardEvent.vue";
 
 export default {
   name: "eventmain",
   components: {
-    Event,
+    EventAdd,
     CardEvent
   },
   data() {
