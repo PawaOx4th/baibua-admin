@@ -1,13 +1,13 @@
 <template>
-  <v-app id="event">
+  <v-app id="eventmain">
     <v-container>
       <div class="font-weight-black" id="title">กิจกรรม</div>
       <!-- <v-btn @click="fetchEvent" color="success">Print Type</v-btn> -->
       <v-layout class="d-flex" justify-space-between="true" block>
         <!-- -------------------------------------------------------------------------------- -->
         <Event @onSubmit="addEvent" />
-        <!--  -->
-        <CardEvent />
+
+        <CardEvent :event="events" />
         <!-- -------------------------------------------------------------------------------- -->
       </v-layout>
     </v-container>
@@ -21,25 +21,36 @@ import Event from "@/components/Event.vue";
 import CardEvent from "@/components/CardEvent.vue";
 
 export default {
-  name: "event",
+  name: "eventmain",
   components: {
     Event,
     CardEvent
   },
   data() {
-    return {};
+    return {
+      events: []
+    };
   },
-  computed: {},
-  mounted() {},
+  async mounted() {
+    const url =
+      "https://us-central1-newagent-47c20.cloudfunctions.net/api/news";
+    let eventData = await axios.get(url);
+    this.events = eventData.data;
+    console.log(this.events);
+    // console.log("mounted");
+  },
   methods: {
     async addEvent(e) {
-      await console.log(e);
-
-      let data = await axios.post(
+      let res = await axios.post(
         "https://us-central1-newagent-47c20.cloudfunctions.net/api/news/",
         e
       );
-      alert(JSON.stringify(data));
+
+      this.events.push(res.data);
+
+      // console.log(this.events);
+
+      alert(JSON.stringify(res));
     }
   }
 };

@@ -5,14 +5,10 @@
         <v-container
           id="scroll-target"
           style="height: 700px"
-          class="overflow-y-auto black"
+          class="overflow-y-auto "
         >
           <v-col v-scroll:#scroll-target="onScroll" style="height: 700px">
-            <v-row
-              v-for="(item, index) in eventAll"
-              :key="index"
-              align="center"
-            >
+            <v-row v-for="(item, index) in events" :key="index" align="center">
               <v-card class="mb-5" width="1300">
                 <v-card-title>
                   {{ item.Topic }}
@@ -35,54 +31,28 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   name: "cardEvent",
+
+  props: ["events"],
   data() {
     return {
-      eventAll: [],
+      // eventAll: [],
       itemColor: ["pink", "green", "blue"],
       type: ["คณะ", "มหาลัย", "มหาวิทยาลัย"],
       vChipColor: ""
     };
   },
-  async mounted() {
-    let eventData = await axios.get(
-      "https://us-central1-newagent-47c20.cloudfunctions.net/api/news"
-    );
-    this.eventAll = eventData.data;
-  },
+
   created() {
-    this.listFilter;
+    // this.listFilter;
   },
   methods: {
     onScroll(e) {
       this.offsetTop = e.target.scrollTop;
-    },
-
-    async fetchEvent() {
-      axios.get().then(response => {
-        const resData = response.data;
-        this.eventAll = resData;
-
-        console.log(resData);
-      });
     }
-
-    // chipColor(e) {
-    //   // console.log(e);
-    //   if (e == this.type[0]) {
-    //     this.vChipColor = this.itemColor[0];
-    //     console.log("Color " + this.vChipColor);
-    //   } else if (e == this.type[1]) {
-    //     this.vChipColor = this.itemColor[1];
-    //     console.log("Color " + this.vChipColor);
-    //   } else {
-    //     this.vChipColor = this.itemColor[2];
-    //     console.log("Color " + this.vChipColor);
-    //   }
-    // }
   }
 };
 </script>

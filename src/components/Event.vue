@@ -1,161 +1,137 @@
 <template>
   <v-app id="event">
     <v-flex xs12 sm12 md11>
-      <v-form v-model="isValid">
-        <v-card class="pa-5 ">
-          <v-layout row wrap>
-            <v-flex xs12 sm1 md12 class="ml-6">
-              <!-- Top -->
-              <!--//************* search Event *************** -->
-              <v-layout row wrap>
-                <v-flex xs12 sm3 md4 ma-5>
-                  <!-- //! Text Field -->
-                  <v-text-field
-                    hide-details
-                    prepend-icon="search"
-                    single-line
-                    label="ค้นหาด้วยชื่อกิจกรรม/โครงการ"
-                    v-model="search"
-                  ></v-text-field>
-                </v-flex>
+      <v-container>
+        <v-row class="d-flex flex-row align-center">
+          <v-col class="d-flex flex-row align-center" cols="12">
+            <v-form v-model="isValid">
+              <v-card class="pa-5">
+                <v-layout row wrap>
+                  <v-flex xs12 sm1 md12 class="ml-6">
+                    <!-- Top -->
+                    <!--//************* search Event *************** -->
 
-                <!-- //! Button Sort -->
-                <v-flex xs2 sm3 md6 ma-5>
-                  <v-tooltip bottom>
-                    <template v-slot:activator="{ on }">
-                      <v-btn
-                        color="primary ma-2"
-                        @click="sort('Type')"
-                        v-on="on"
-                      >
-                        <v-icon left small>search </v-icon>
-                        <span class="caption text-lowercase"
-                          >จัดเรียงโดย หมวดหมู่</span
+                    <!--//*************************************** */  -->
+                    <!--  -->
+                    <v-divider class="mt-6 mb-12"></v-divider>
+
+                    <!-- Center -->
+
+                    <v-layout row wrap>
+                      <!--//***************** Event Name  ***********************-->
+                      <v-flex xs12 md5>
+                        <!-- <div class="caption gray-text">Name Project</div> -->
+                        <v-text-field
+                          v-model="evenDetail.Topic"
+                          label="ชื่อกิจกรรม"
+                          outlined
+                          clearable
+                          :rules="[rulers.required]"
+                        ></v-text-field>
+                      </v-flex>
+
+                      <!--//****************  Item Group ****************/  -->
+                      <div class="mr-10"></div>
+                      <v-flex xs12 md5>
+                        <v-overflow-btn
+                          :items="items"
+                          label="-"
+                          filled
+                          target="item"
+                          v-model="evenDetail.Type"
+                          :rules="[rulers.required]"
+                        ></v-overflow-btn>
+                      </v-flex>
+
+                      <!--//**************** Data Picker ***************/  -->
+                      <v-flex xs12 md5>
+                        <v-menu
+                          v-model="menu3"
+                          :close-on-content-click="false"
+                          :nudge-right="40"
+                          transition="scale-transition"
+                          offset-y
+                          min-width="290px"
                         >
-                      </v-btn>
-                    </template>
-                    <span>จัดเรียงโดย หมวดหมู่</span>
-                  </v-tooltip>
-                </v-flex>
-              </v-layout>
-              <!--//*************************************** */  -->
-              <!--  -->
-              <v-divider class="mt-6 mb-12"></v-divider>
+                          <template v-slot:activator="{ on }">
+                            <v-text-field
+                              v-model="evenDetail.Date"
+                              label="คลิกเพื่อเลือกวันที่"
+                              prepend-icon="event"
+                              readonly
+                              v-on="on"
+                            ></v-text-field>
+                          </template>
+                          <v-date-picker
+                            v-model="evenDetail.Date"
+                            @input="menu3 = false"
+                            locale="th"
+                          ></v-date-picker>
+                        </v-menu>
+                      </v-flex>
 
-              <!-- Center -->
+                      <!--//**************** Time Picker ***************//  -->
+                      <v-flex xs12 md5>
+                        <v-menu
+                          ref="menu"
+                          v-model="menu2"
+                          :close-on-content-click="false"
+                          :nudge-right="40"
+                          :return-value.sync="time"
+                          transition="scale-transition"
+                          offset-y
+                          max-width="290px"
+                          min-width="290px"
+                        >
+                          <template v-slot:activator="{ on }">
+                            <v-text-field
+                              v-model="evenDetail.Time"
+                              label="คลิกเพื่อเลือกเวลา"
+                              prepend-icon="access_time"
+                              readonly
+                              v-on="on"
+                              :rules="[rulers.requiredTime]"
+                            ></v-text-field>
+                          </template>
+                          <v-time-picker
+                            v-if="menu2"
+                            v-model="evenDetail.Time"
+                            full-width
+                            format="24hr"
+                            @click:minute="$refs.menu.save(time)"
+                          ></v-time-picker>
+                        </v-menu>
+                      </v-flex>
 
-              <v-layout row wrap>
-                <!--//***************** Event Name  ***********************-->
-                <v-flex xs12 md5>
-                  <!-- <div class="caption gray-text">Name Project</div> -->
-                  <v-text-field
-                    v-model="evenDetail.Topic"
-                    label="ชื่อกิจกรรม"
-                    outlined
-                    clearable
-                    :rules="[rulers.required]"
-                  ></v-text-field>
-                </v-flex>
-
-                <!--//****************  Item Group ****************/  -->
-                <div class="mr-10"></div>
-                <v-flex xs12 md5>
-                  <v-overflow-btn
-                    :items="items"
-                    label="-"
-                    filled
-                    target="item"
-                    v-model="evenDetail.Type"
-                    :rules="[rulers.required]"
-                  ></v-overflow-btn>
-                </v-flex>
-
-                <!--//**************** Data Picker ***************/  -->
-                <v-flex xs12 md5>
-                  <v-menu
-                    v-model="menu3"
-                    :close-on-content-click="false"
-                    :nudge-right="40"
-                    transition="scale-transition"
-                    offset-y
-                    min-width="290px"
-                  >
-                    <template v-slot:activator="{ on }">
-                      <v-text-field
-                        v-model="evenDetail.Date"
-                        label="คลิกเพื่อเลือกวันที่"
-                        prepend-icon="event"
-                        readonly
-                        v-on="on"
-                      ></v-text-field>
-                    </template>
-                    <v-date-picker
-                      v-model="evenDetail.Date"
-                      @input="menu3 = false"
-                      locale="th"
-                    ></v-date-picker>
-                  </v-menu>
-                </v-flex>
-
-                <!--//**************** Time Picker ***************//  -->
-                <v-flex xs12 md5>
-                  <v-menu
-                    ref="menu"
-                    v-model="menu2"
-                    :close-on-content-click="false"
-                    :nudge-right="40"
-                    :return-value.sync="time"
-                    transition="scale-transition"
-                    offset-y
-                    max-width="290px"
-                    min-width="290px"
-                  >
-                    <template v-slot:activator="{ on }">
-                      <v-text-field
-                        v-model="evenDetail.Time"
-                        label="คลิกเพื่อเลือกเวลา"
-                        prepend-icon="access_time"
-                        readonly
-                        v-on="on"
-                        :rules="[rulers.requiredTime]"
-                      ></v-text-field>
-                    </template>
-                    <v-time-picker
-                      v-if="menu2"
-                      v-model="evenDetail.Time"
-                      full-width
-                      format="24hr"
-                      @click:minute="$refs.menu.save(time)"
-                    ></v-time-picker>
-                  </v-menu>
-                </v-flex>
-
-                <!--//**************** Text Area ***************//  -->
-                <v-flex xs12 md12 pa-3>
-                  <v-textarea
-                    v-model="evenDetail.Description"
-                    outlined
-                    name="input-7-4"
-                    label="รายละเอียดกิจกรรม"
-                    value=""
-                    :rules="[rulers.requiredDetail]"
-                  ></v-textarea>
-                </v-flex>
-                <v-flex xs12 md12 pa-3 class="d-flex flex-row-reverse">
-                  <v-btn
-                    color="info"
-                    height="50"
-                    width="200"
-                    :disabled="!isValid"
-                    @click="addEvent"
-                    >Submit</v-btn
-                  >
-                </v-flex>
-              </v-layout>
-            </v-flex>
-          </v-layout>
-        </v-card>
-      </v-form>
+                      <!--//**************** Text Area ***************//  -->
+                      <v-flex xs12 md12 pa-3>
+                        <v-textarea
+                          v-model="evenDetail.Description"
+                          outlined
+                          name="input-7-4"
+                          label="รายละเอียดกิจกรรม"
+                          value=""
+                          :rules="[rulers.requiredDetail]"
+                        ></v-textarea>
+                      </v-flex>
+                      <v-flex xs12 md12 pa-3 class="d-flex flex-row-reverse">
+                        <v-btn
+                          color="info"
+                          height="50"
+                          width="200"
+                          :disabled="!isValid"
+                          @click="addEvent"
+                          >Submit</v-btn
+                        >
+                      </v-flex>
+                    </v-layout>
+                  </v-flex>
+                </v-layout>
+              </v-card>
+            </v-form>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-flex>
   </v-app>
 </template>
@@ -177,7 +153,7 @@ export default {
       topic: "",
       group: "",
       item: "",
-      eventAll: [],
+      // eventAll: [],
       evenDetail: {
         Topic: "",
         Type: "",
@@ -204,11 +180,15 @@ export default {
     };
   },
   methods: {
-    sort(e) {
-      this.eventAll.sort((a, b) => (a[e] < b[e] ? -1 : 1));
-    },
     addEvent() {
       this.$emit("onSubmit", this.evenDetail);
+      this.evenDetail = {
+        Topic: "",
+        Type: "",
+        Description: "",
+        Date: "",
+        Time: ""
+      };
       // console.log(this.evenDetail);
     }
   }
