@@ -5,7 +5,7 @@
         <v-container
           id="scroll-target"
           style="height: 700px"
-          class="overflow-y-auto black"
+          class="overflow-y-auto "
         >
           <v-col v-scroll:#scroll-target="onScroll" style="height: 700px">
             <v-row

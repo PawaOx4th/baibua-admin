@@ -6,38 +6,7 @@
           <v-layout row wrap>
             <v-flex xs12 sm1 md12 class="ml-6">
               <!-- Top -->
-              <!--//************* search Event *************** -->
-              <v-layout row wrap>
-                <v-flex xs12 sm3 md4 ma-5>
-                  <!-- //! Text Field -->
-                  <v-text-field
-                    hide-details
-                    prepend-icon="search"
-                    single-line
-                    label="ค้นหาด้วยชื่อกิจกรรม/โครงการ"
-                    v-model="search"
-                  ></v-text-field>
-                </v-flex>
 
-                <!-- //! Button Sort -->
-                <v-flex xs2 sm3 md6 ma-5>
-                  <v-tooltip bottom>
-                    <template v-slot:activator="{ on }">
-                      <v-btn
-                        color="primary ma-2"
-                        @click="sort('Type')"
-                        v-on="on"
-                      >
-                        <v-icon left small>search </v-icon>
-                        <span class="caption text-lowercase"
-                          >จัดเรียงโดย หมวดหมู่</span
-                        >
-                      </v-btn>
-                    </template>
-                    <span>จัดเรียงโดย หมวดหมู่</span>
-                  </v-tooltip>
-                </v-flex>
-              </v-layout>
               <!--//*************************************** */  -->
               <!--  -->
               <v-divider class="mt-6 mb-12"></v-divider>
