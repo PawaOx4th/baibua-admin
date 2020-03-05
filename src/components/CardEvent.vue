@@ -55,18 +55,28 @@ export default {
       vChipColor: ""
     };
   },
+  watch: {
+    eventAll: function() {
+      // setTimeout(this.UpdateCard, 3000);
+    }
+  },
   async mounted() {
     let eventData = await axios.get(
       "https://us-central1-newagent-47c20.cloudfunctions.net/api/news"
     );
     this.eventAll = eventData.data;
   },
-  created() {
-    this.listFilter;
-  },
+  created() {},
   methods: {
     onScroll(e) {
       this.offsetTop = e.target.scrollTop;
+    },
+    async UpdateCard() {
+      let eventData = await axios.get(
+        "https://us-central1-newagent-47c20.cloudfunctions.net/api/news"
+      );
+      this.eventAll = eventData.data;
+      console.log("UpdateCard");
     }
   }
 };

@@ -36,9 +36,10 @@ export default {
       await console.log(e);
 
       let data = await axios.post(
-        "https://us-central1-newagent-47c20.cloudfunctions.net/api/news/",
+        "https://us-central1-newagent-47c20.cloudfunctions.net/api/news",
         e
       );
+
       alert(JSON.stringify(data));
     }
   }

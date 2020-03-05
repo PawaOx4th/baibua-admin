@@ -4,7 +4,7 @@
       <v-container>
         <v-row class="d-flex flex-row align-center">
           <v-col class="d-flex flex-row align-center" cols="12">
-            <v-form v-model="isValid">
+            <v-form ref="form" v-model="isValid">
               <v-card class="pa-5">
                 <v-layout row wrap>
                   <v-flex xs12 sm1 md12 class="ml-6">
@@ -185,6 +185,7 @@ export default {
     },
     addEvent() {
       this.$emit("onSubmit", this.evenDetail);
+      // this.$refs.form.reset();
       // console.log(this.evenDetail);
     }
   }
