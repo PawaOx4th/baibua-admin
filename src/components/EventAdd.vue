@@ -1,6 +1,6 @@
 <template>
   <v-app id="event">
-    <v-flex xs12 sm12 md11>
+    <v-flex xs12 sm12 md12>
       <v-container>
         <v-row class="d-flex flex-row align-center">
           <v-col class="d-flex flex-row align-center" cols="12">

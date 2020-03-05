@@ -79,9 +79,9 @@ export default {
           stusus: "warning"
         },
         {
-          title: "ตารางเรียน",
+          title: "ข้อมูลนักศึกษา",
           icon: "mdi-help-box",
-          route: "/display",
+          route: "/student",
           stusus: "info"
         },
         {

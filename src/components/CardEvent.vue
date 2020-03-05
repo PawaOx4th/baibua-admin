@@ -1,6 +1,6 @@
 <template>
   <v-app id="cardEvent">
-    <v-flex style="width: 700px" ml-3>
+    <v-flex style="width: 500px" ml-3>
       <v-container>
         <v-container
           id="scroll-target"
@@ -16,13 +16,15 @@
               <v-hover v-slot:default="{ hover }">
                 <v-card
                   :elevation="hover ? 10 : 2"
-                  :class="`{ 'on-hover': hover }  mb-3`"
+                  :class="`{ 'on-hover': hover }  mb-3 grey lighten-3 `"
                   width="1300"
                 >
-                  <v-card-title>
+                  <v-card-title class="light-blue--text">
                     {{ item.Topic }}
                   </v-card-title>
-                  <v-chip class="green ml-3">{{ item.Type }}</v-chip>
+                  <v-chip class="green ml-3 white--text">{{
+                    item.Type
+                  }}</v-chip>
                   <v-card-subtitle>
                     {{ item.Date[0] }}
                     {{ item.Date[1] }}
