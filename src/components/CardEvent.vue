@@ -75,6 +75,7 @@ export default {
       let eventData = await axios.get(
         "https://us-central1-newagent-47c20.cloudfunctions.net/api/news"
       );
+      alert();
       this.eventAll = eventData.data;
       console.log("UpdateCard");
     }

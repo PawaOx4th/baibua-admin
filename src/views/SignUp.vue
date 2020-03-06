@@ -32,7 +32,6 @@ export default {
   methods: {
     pressed() {
       // alert("submit");
-
       try {
         const newUser = firebase
           .auth()

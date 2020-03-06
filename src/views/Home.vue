@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <Navber />
-    <v-content>
+    <v-content fluid>
       <router-view> </router-view>
     </v-content>
   </div>
