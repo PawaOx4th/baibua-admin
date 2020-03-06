@@ -11,55 +11,62 @@
     
   </div> -->
   <v-app id="inspire">
-    <v-content>
-      <v-container class="fill-height" fluid>
-        <v-row align="center" justify="center">
+    <div id="bglogin">
+      <v-container class="fill-height " fluid id="container">
+        <v-row align="center" justify="end" class="mr-12">
           <v-col cols="12" sm="8" md="4">
-            <v-card class="elevation-12">
-              <v-toolbar color="primary" dark flat>
-                <v-toolbar-title>Login Admin</v-toolbar-title>
-              </v-toolbar>
-              <v-card-text>
-                <v-form @submit.prevent="pressed">
-                  <v-text-field
-                    label="Login"
-                    name="login"
-                    prepend-icon="person"
-                    type="text"
-                    v-model="email"
-                    outlined
-                  />
+            <v-hover v-slot:default="{ hover }">
+              <v-card class="elevation-12" :elevation="hover ? 12 : 2">
+                <v-toolbar color="blue" dark>
+                  <v-toolbar-title>Login Admin</v-toolbar-title>
+                </v-toolbar>
+                <v-card-text>
+                  <v-form @submit.prevent="pressed">
+                    <v-text-field
+                      label="Login"
+                      name="login"
+                      prepend-icon="person"
+                      type="text"
+                      v-model="email"
+                      outlined
+                    />
 
-                  <v-text-field
-                    id="password"
-                    label="Password"
-                    name="password"
-                    prepend-icon="lock"
-                    type="password"
-                    v-model="password"
-                    outlined
-                    @keyup.enter="pressed"
-                  />
+                    <v-text-field
+                      id="password"
+                      label="Password"
+                      name="password"
+                      prepend-icon="lock"
+                      type="password"
+                      v-model="password"
+                      outlined
+                      @keyup.enter="pressed"
+                    />
 
-                  <div class="error--text" v-if="error">
-                    {{ error.message }}
-                  </div>
-                </v-form>
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer />
-                <v-btn color="info" @click="pressed">Login</v-btn>
-                <!-- <v-btn color="primary" @click.alt="defultData">Login</v-btn> -->
-              </v-card-actions>
-            </v-card>
+                    <div class="error--text" v-if="error">
+                      {{ error.message }}
+                    </div>
+                  </v-form>
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer />
+                  <v-btn color="info" @click="pressed">Login</v-btn>
+                  <!-- <v-btn color="primary" @click.alt="defultData">Login</v-btn> -->
+                </v-card-actions>
+              </v-card>
+            </v-hover>
           </v-col>
         </v-row>
       </v-container>
-    </v-content>
+      <v-overlay :value="overlay" opacity="0.8">
+        <v-img src="../assets/5.svg"> </v-img>
+        <!-- <v-img src="../assets/Spinner.gif"> </v-img> -->
+      </v-overlay>
+    </div>
   </v-app>
 </template>
 
 <script>
+// eslint-disable-next-line no-unused-vars
 import * as firebase from "firebase/app";
 import "firebase/auth";
 
@@ -67,17 +74,24 @@ import "firebase/auth";
 
 export default {
   name: "signin",
+
   data() {
     return {
       email: "",
       password: "",
-      error: ""
+      error: "",
+      overlay: false
     };
   },
   props: {
     source: String
   },
   computed: {},
+  watch: {
+    overlay() {
+      setTimeout(() => this.$router.replace({ name: "home" }), 2500);
+    }
+  },
   methods: {
     pressed() {
       firebase
@@ -86,7 +100,7 @@ export default {
         // eslint-disable-next-line no-unused-vars
         .then(data => {
           // console.log(data);
-          this.$router.replace({ name: "home" });
+          this.overlay = true;
         })
         .catch(error => {
           this.error = error;
@@ -103,4 +117,25 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+#bglogin {
+  height: 100%;
+  /* background-image: url("https://images.unsplash.com/photo-1508020963102-c6c723be5764?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"); */
+  /* filter: blur(8px); */
+  background-image: url("../assets/img/Mockup.svg");
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#container {
+  background-image: url("../assets/PhotonBlue.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#card {
+  border-radius: 5%;
+}
+</style>

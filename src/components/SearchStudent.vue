@@ -178,6 +178,7 @@
     </v-row>
     <v-overlay :value="overlay">
       <v-snackbar
+        id="snackBar"
         multi-line
         v-model="snackbar"
         :timeout="timeout"
@@ -308,4 +309,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+#snackBar {
+  font-size: 25px;
+}
+</style>

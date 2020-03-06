@@ -7,7 +7,6 @@ import Home from "../views/Home.vue";
 import SignIn from "../views/SignIn";
 import SignUp from "../views/SignUp";
 import Event from "../views/Page/Event";
-import Dashbord from "../views/Page/DashBord";
 import Student from "../views/Page/Student";
 
 Vue.use(VueRouter);
@@ -22,14 +21,14 @@ const routes = [
   //   }
   // },
   {
-    path: "/dashbord",
+    path: "/event",
     component: Home,
     name: "home",
     auth: true,
     meta: { requiresAuth: true },
     children: [
       { path: "/event", component: Event, name: "event" },
-      { path: "/dashbord", component: Dashbord, name: "dashbord" },
+
       {
         path: "/student",
         component: Student,

@@ -1,6 +1,6 @@
 <template>
   <!-- <v-app id="student"> -->
-  <v-container fluid>
+  <v-container>
     <v-responsive :aspect-ratio="16 / 9">
       <v-card elevation="6" class="blue lighten-5">
         <v-img
@@ -13,7 +13,7 @@
             <v-toolbar-title>Student</v-toolbar-title>
           </v-toolbar>
           <v-tabs>
-            <v-tab class="blue lighten-5" >
+            <v-tab class="blue lighten-5">
               <v-icon left>mdi-account</v-icon>
               เพิ่มรายชื่อนักศึกษา
             </v-tab>
@@ -32,7 +32,6 @@
             <!--  -->
             <v-tab-item>
               <SearchStudent />
-              
             </v-tab-item>
             <!--  -->
             <!-- <v-tab-item> </v-tab-item> -->
@@ -56,8 +55,7 @@ export default {
   components: {
     // eslint-disable-next-line vue/no-unused-components
     CreateStudent,
-    SearchStudent,
-   
+    SearchStudent
   },
   data() {
     return {

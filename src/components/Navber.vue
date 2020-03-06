@@ -38,6 +38,7 @@
           v-for="(item, index) in menu"
           :key="index"
           link
+          router
           :to="item.route"
         >
           <v-list-item-icon>
@@ -67,12 +68,6 @@ export default {
       tab: false,
       menu: [
         {
-          title: "ข้อมูลการใช้งาน",
-          icon: "mdi-view-dashboard",
-          route: "/dashbord",
-          stusus: "success"
-        },
-        {
           title: "กิจกรรม",
           icon: "mdi-image",
           route: "/event",
@@ -80,13 +75,13 @@ export default {
         },
         {
           title: "ข้อมูลนักศึกษา",
-          icon: "mdi-help-box",
+          icon: "mdi-account-details-outline",
           route: "/student",
           stusus: "info"
         },
         {
-          title: "ปฎิทินการศึกษา",
-          icon: "mdi-help-box",
+          title: "รายวิชา",
+          icon: "mdi-calendar-text",
           route: "/textcolor",
           stusus: "error"
         },
