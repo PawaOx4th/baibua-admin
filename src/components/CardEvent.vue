@@ -1,6 +1,6 @@
 <template>
   <v-app id="cardEvent">
-    <v-flex style="width: 700px" ml-3>
+    <v-flex style="width: 500px" ml-3>
       <v-container>
         <v-container
           id="scroll-target"
@@ -16,13 +16,15 @@
               <v-hover v-slot:default="{ hover }">
                 <v-card
                   :elevation="hover ? 10 : 2"
-                  :class="`{ 'on-hover': hover }  mb-3`"
+                  :class="`{ 'on-hover': hover }  mb-3 grey lighten-3 `"
                   width="1300"
                 >
-                  <v-card-title>
+                  <v-card-title class="light-blue--text">
                     {{ item.Topic }}
                   </v-card-title>
-                  <v-chip class="green ml-3">{{ item.Type }}</v-chip>
+                  <v-chip class="green ml-3 white--text">{{
+                    item.Type
+                  }}</v-chip>
                   <v-card-subtitle>
                     {{ item.Date[0] }}
                     {{ item.Date[1] }}
@@ -53,18 +55,29 @@ export default {
       vChipColor: ""
     };
   },
+  watch: {
+    eventAll: function() {
+      // setTimeout(this.UpdateCard, 3000);
+    }
+  },
   async mounted() {
     let eventData = await axios.get(
       "https://us-central1-newagent-47c20.cloudfunctions.net/api/news"
     );
     this.eventAll = eventData.data;
   },
-  created() {
-    this.listFilter;
-  },
+  created() {},
   methods: {
     onScroll(e) {
       this.offsetTop = e.target.scrollTop;
+    },
+    async UpdateCard() {
+      let eventData = await axios.get(
+        "https://us-central1-newagent-47c20.cloudfunctions.net/api/news"
+      );
+      alert();
+      this.eventAll = eventData.data;
+      console.log("UpdateCard");
     }
   }
 };

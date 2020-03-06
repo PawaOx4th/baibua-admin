@@ -1,7 +1,7 @@
 <template>
   <v-app id="event">
     <v-container>
-      <div class="font-weight-black" id="title">กิจกรรม</div>
+      <div class="font-weight-black blue--text" id="title">กิจกรรม</div>
       <!-- <v-btn @click="fetchEvent" color="success">Print Type</v-btn> -->
       <v-layout class="d-flex" justify-space-between="true" block>
         <!-- -------------------------------------------------------------------------------- -->
@@ -36,9 +36,10 @@ export default {
       await console.log(e);
 
       let data = await axios.post(
-        "https://us-central1-newagent-47c20.cloudfunctions.net/api/news/",
+        "https://us-central1-newagent-47c20.cloudfunctions.net/api/news",
         e
       );
+
       alert(JSON.stringify(data));
     }
   }
