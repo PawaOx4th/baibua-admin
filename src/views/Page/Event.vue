@@ -1,7 +1,7 @@
 <template>
   <v-app id="event">
     <v-container>
-      <div class="font-weight-black blue--text" id="title">กิจกรรม</div>
+      <div class="font-weight-black #2D3440--text" id="title">กิจกรรม</div>
       <!-- <v-btn @click="fetchEvent" color="success">Print Type</v-btn> -->
       <v-layout class="d-flex" justify-space-between="true" block>
         <!-- -------------------------------------------------------------------------------- -->

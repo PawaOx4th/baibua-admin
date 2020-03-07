@@ -117,9 +117,10 @@
                 <!-- //* BTN -->
                 <v-flex class="d-flex flex-end  py-5 justify-end">
                   <v-btn
-                    color="green accent-3"
+                    color="#405375"
+                    outlined
                     x-large
-                    class="mr-4 white--text"
+                    class="mr-4 #405375--text"
                     @click="reset"
                   >
                     Reset Form
@@ -134,10 +135,11 @@
                     </v-btn> -->
 
                   <v-btn
-                    color="info"
+                    color="#4075F4"
                     x-large
                     :disabled="!valid"
                     @click="createStudent"
+                    class="white--text"
                     width="200"
                   >
                     SUBMIT
