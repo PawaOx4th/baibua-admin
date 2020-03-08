@@ -1,6 +1,6 @@
 <template>
   <div id="subject_search">
-    <v-container class="white">
+    <v-container class="">
       <!-- //* Search -->
       <v-row no-gutters>
         <v-col cols="12">
@@ -17,7 +17,7 @@
                 <v-row row wrap justify="center" align="start">
                   <v-col md="8" class="">
                     <v-text-field
-                      placeholder="ค้นหารายวิชา"
+                      placeholder="ค้นหารายวิชา (ระบุบภาษาไทย)"
                       filled
                       rounded
                       v-model.trim="subject_id"
@@ -31,7 +31,7 @@
                       color="#4663B2"
                       class="white--text"
                       @click="searchSubject"
-                      >ค้นหา</v-btn
+                      >เพิ่มรายวิชา</v-btn
                     >
                   </v-col>
                 </v-row>
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   name: "subject_search",
@@ -67,13 +67,8 @@ export default {
   },
 
   methods: {
-    async searchSubject() {
-      console.log(this.subject_id);
-      const urlSearch = `https://us-central1-newagent-47c20.cloudfunctions.net/api/subject/filterId/${this.subject_id}`;
-      console.log(urlSearch);
-      await axios.get(urlSearch).then(val => {
-        console.dir(val.data);
-      });
+    searchSubject() {
+      console.log("searchSubject");
     }
   }
 };

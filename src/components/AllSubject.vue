@@ -1,9 +1,8 @@
-/* eslint-disable vue/return-in-computed-property */
 <template>
   <div id="allsubject">
     <!-- <v-btn color="success" @click="fechSubject">text</v-btn> -->
     <!-- <v-btn color="success" @click="sort('Type')">text</v-btn> -->
-    <!-- {{ propsData }} -->
+    <SubjectSearch @sentData="sentData" />
 
     <v-container
       class=" d-flex justify-start align-center flex-wrap  pa-10"
@@ -11,7 +10,7 @@
     >
       <v-row dense>
         <v-col
-          v-for="(subject, index) in data"
+          v-for="(subject, index) in listFilter"
           :key="index"
           md="4"
           sm="12"
@@ -80,8 +79,13 @@
 <script>
 import axios from "axios";
 
+import SubjectSearch from "@/components/Subject_search.vue";
+
 export default {
   name: "allsubject",
+  components: {
+    SubjectSearch
+  },
   data() {
     return {
       data: [],
@@ -91,7 +95,7 @@ export default {
       close: " ",
       propsData: this.newValue,
       search: "",
-      b: ""
+      subjectName: ""
     };
   },
   props: ["newValue"],
@@ -104,30 +108,37 @@ export default {
     },
     statusMessage() {
       this.statusMessage = "";
+    },
+    propsData() {
+      console.log(this.propsData);
     }
   },
   async mounted() {
     let response = await axios.get(this.url);
     this.data = response.data;
-    console.log(response.data[0].Status);
+
+    // console.log(response.data[0].Status);
   },
-  computed: {},
-  methods: {
-    serchData() {
-      this.search = this.b;
-      console.log("Click");
-    },
-    changStatus(val) {
-      if (val == 1) {
-        this.statusMessage = "สามารถลงทะเบียนได้ ";
-        this.statusIcon = "mdi-calendar-check";
-      } else if (val == 0) {
-        this.statusMessage = "ไม่สามารถลงทะเบียนได้ ";
-        this.statusIcon = "mdi-calendar-remove";
+  computed: {
+    listFilter() {
+      if (this.subjectName) {
+        return this.data.filter(item => {
+          return this.subjectName
+            .toLowerCase()
+            .split("")
+            .every(v => item.NameTH.toLowerCase().includes(v));
+        });
+      } else {
+        return this.data;
       }
-    },
+    }
+  },
+  methods: {
     sort(val) {
       this.data.sort((a, b) => (a[val] < b[val] ? -1 : 1));
+    },
+    sentData(value) {
+      this.subjectName = value;
     }
   }
 };

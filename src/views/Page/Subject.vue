@@ -1,24 +1,24 @@
 <template>
-  <div id="subject">
+  <div id="subject" class="black">
     <div class="">
       <!-- //* Header -->
-      <SubjectSearch @sentData="sentData" />
-      {{ subjectName }}
+      <!-- <SubjectSearch @sentData="sentData" /> -->
 
       <!-- //* Subject All -->
-      <AllSubject newValue="" />
+      <AllSubject />
     </div>
   </div>
 </template>
 
 <script>
-import SubjectSearch from "@/components/Subject_search.vue";
+// eslint-disable-next-line no-unused-vars
+// import SubjectSearch from "@/components/Subject_search.vue";
 import AllSubject from "@/components/AllSubject.vue";
 
 export default {
   name: "subject",
   components: {
-    SubjectSearch,
+    // SubjectSearch,
     AllSubject
   },
   data() {
