@@ -1,3 +1,4 @@
+/* eslint-disable vue/return-in-computed-property */
 <template>
   <div id="allsubject">
     <!-- <v-btn color="success" @click="fechSubject">text</v-btn> -->
@@ -46,14 +47,22 @@
                   </div>
                 </v-col>
               </v-row>
-              <div v-on="changStatus(subject.Status)">
+              <div>
                 <v-row class="ma-0 pa-0">
                   <v-col md="6" class="ma-0 pa-0 ">
-                    <v-icon>{{ statusIcon }}</v-icon>
+                    <v-icon>{{
+                      subject.Status == 1
+                        ? `mdi-calendar-check`
+                        : `mdi-calendar-remove`
+                    }}</v-icon>
 
                     สถานะ :
 
-                    {{ statusMessage }}
+                    {{
+                      subject.Status == 1
+                        ? `สามารถลงทะเบียนได้`
+                        : `ไม่สามารถลงทะเบียนได้`
+                    }}
                   </v-col>
                 </v-row>
               </div>
@@ -100,37 +109,13 @@ export default {
   async mounted() {
     let response = await axios.get(this.url);
     this.data = response.data;
+    console.log(response.data[0].Status);
   },
   computed: {},
   methods: {
     serchData() {
       this.search = this.b;
       console.log("Click");
-    },
-    async fechSubject() {
-      // eslint-disable-next-line no-unused-vars
-
-      const url =
-        "https://us-central1-newagent-47c20.cloudfunctions.net/api/subject";
-      await axios.get(url).then(val => {
-        // console.dir("1" + typeof this.data);
-        // console.dir("2" + typeof val);
-        // console.dir("3" + typeof this.data);
-        this.data = val.data;
-        // this.data.push(val.data);
-
-        // console.log(this.data);
-      });
-    },
-    async setIcon(index, val) {
-      let iconStatusSubject = "";
-      if (val == 1) {
-        iconStatusSubject = "mdi-calendar-check";
-        return await (this.statusIcon = iconStatusSubject);
-      } else {
-        iconStatusSubject = "";
-        return await (this.statusIcon = iconStatusSubject);
-      }
     },
     changStatus(val) {
       if (val == 1) {
