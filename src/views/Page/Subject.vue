@@ -1,5 +1,5 @@
 <template>
-  <div id="subject" class="black">
+  <div id="subject" class="">
     <div class="">
       <!-- //* Header -->
       <!-- <SubjectSearch @sentData="sentData" /> -->

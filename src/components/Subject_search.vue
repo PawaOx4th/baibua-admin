@@ -23,17 +23,25 @@
                       v-model.trim="subject_id"
                     ></v-text-field>
                   </v-col>
-                  <v-col md="3" class=" pa-0 mt-4">
-                    <v-btn
-                      block
-                      large
-                      rounded
-                      color="#4663B2"
-                      class="white--text"
-                      @click="searchSubject"
-                      >เพิ่มรายวิชา</v-btn
-                    >
-                  </v-col>
+                  <v-dialog v-model="dialog" width="700">
+                    <template v-slot:activator="{ on }">
+                      <v-col md="3" class=" pa-0 mt-4">
+                        <v-btn
+                          block
+                          large
+                          rounded
+                          color="#4663B2"
+                          class="white--text"
+                          @click="searchSubject"
+                          v-on="on"
+                          >เพิ่มรายวิชา</v-btn
+                        >
+                      </v-col>
+                    </template>
+                    <!-- //* Card In Dialog -->
+                    <CreateSubject />
+                    <!--  -->
+                  </v-dialog>
                 </v-row>
               </v-card>
             </v-col>
@@ -46,9 +54,13 @@
 
 <script>
 // import axios from "axios";
+import CreateSubject from "./CreateSubject.vue";
 
 export default {
   name: "subject_search",
+  components: {
+    CreateSubject
+  },
   data() {
     return {
       data: "",

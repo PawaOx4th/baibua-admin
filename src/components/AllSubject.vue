@@ -2,6 +2,7 @@
   <div id="allsubject">
     <!-- <v-btn color="success" @click="fechSubject">text</v-btn> -->
     <!-- <v-btn color="success" @click="sort('Type')">text</v-btn> -->
+    <!-- //* Header -->
     <SubjectSearch @sentData="sentData" />
 
     <v-container
