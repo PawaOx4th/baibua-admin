@@ -55,6 +55,17 @@ export default {
       subject_id: ""
     };
   },
+  // mounted() {
+  //   setInterval(() => {
+  //     this.$emit("sentData", this.subject_id);
+  //   }, 100);
+  // },
+  watch: {
+    subject_id() {
+      this.$emit("sentData", this.subject_id);
+    }
+  },
+
   methods: {
     async searchSubject() {
       console.log(this.subject_id);

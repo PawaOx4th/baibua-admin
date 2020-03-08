@@ -2,10 +2,11 @@
   <div id="subject">
     <div class="">
       <!-- //* Header -->
-      <SubjectSearch />
+      <SubjectSearch @sentData="sentData" />
+      {{ subjectName }}
 
       <!-- //* Subject All -->
-      <AllSubject />
+      <AllSubject newValue="" />
     </div>
   </div>
 </template>
@@ -21,7 +22,14 @@ export default {
     AllSubject
   },
   data() {
-    return {};
+    return {
+      subjectName: ""
+    };
+  },
+  methods: {
+    sentData(value) {
+      this.subjectName = value;
+    }
   }
 };
 </script>

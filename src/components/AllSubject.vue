@@ -1,37 +1,68 @@
 <template>
   <div id="allsubject">
-    <v-btn color="success" @click="fechSubject">text</v-btn>
+    <!-- <v-btn color="success" @click="fechSubject">text</v-btn> -->
+    <!-- <v-btn color="success" @click="sort('Type')">text</v-btn> -->
+    <!-- {{ propsData }} -->
 
     <v-container
-      class=" d-flex justify-start align-center flex-wrap pa-5"
+      class=" d-flex justify-start align-center flex-wrap  pa-10"
       fluid
     >
-      <!-- <v-col> -->
+      <v-row dense>
+        <v-col
+          v-for="(subject, index) in data"
+          :key="index"
+          md="4"
+          sm="12"
+          class="ma-0"
+        >
+          <v-container fluid class="ma-0">
+            <!--  -->
+            <v-card
+              :class="
+                `subject ${subject.Type == 0 ? `open` : `close`} pa-5 ma-0  `
+              "
+            >
+              <!-- //* Name -->
+              <v-row row wrap>
+                <v-col md="12" xs="12">
+                  <!-- <div class=" grey--text text--lighten-1 ma-0">ชื่อวิชา</div> -->
+                  {{ subject.NameEN }}
+                  <div>{{ subject.NameTH }}</div>
 
-      <!-- <v-col md="4" class="red"> -->
+                  <div class="py-2">
+                    <!-- <v-icon>mdi-dots-vertical</v-icon> -->
+                    <v-btn
+                      small
+                      outlined
+                      rounded
+                      :color="`${subject.Type == 0 ? `#179EE0` : `#f4511e`}`"
+                      >{{ subject.Id }}</v-btn
+                    >
+                    <!-- <v-col md="3" class="ma-0 pa-0"> -->
+                    <!-- <v-icon>home</v-icon> -->
+                    หน่วยกิต : {{ subject.Credit }}
+                    <!-- </v-col> -->
+                  </div>
+                </v-col>
+              </v-row>
+              <div v-on="changStatus(subject.Status)">
+                <v-row class="ma-0 pa-0">
+                  <v-col md="6" class="ma-0 pa-0 ">
+                    <v-icon>{{ statusIcon }}</v-icon>
 
-      <v-card
-        v-for="(subject, index) in data"
-        :key="index"
-        width="450"
-        height="200"
-        :class="`subject ${subject.Type == 0 ? `open` : `close`}  pa-5  ma-1`"
-      >
-        <!-- //* Name -->
-        <v-row row wrap>
-          <v-col md="12" xs="12">
-            <div class=" grey--text text--lighten-1 ma-0">ชื่อวิชา</div>
-            {{ subject.NameTH }}
-            <div>{{ subject.NameEN }}</div>
-          </v-col>
-        </v-row>
+                    สถานะ :
 
-        <!-- //*  -->
-      </v-card>
+                    {{ statusMessage }}
+                  </v-col>
+                </v-row>
+              </div>
+            </v-card>
 
-      <!-- </v-col> -->
-
-      <!-- </v-col> -->
+            <!--  -->
+          </v-container>
+        </v-col>
+      </v-row>
     </v-container>
     <!-- </v-hover> -->
   </div>
@@ -44,21 +75,74 @@ export default {
   name: "allsubject",
   data() {
     return {
-      data: []
+      data: [],
+      url: "https://us-central1-newagent-47c20.cloudfunctions.net/api/subject",
+      statusIcon: "",
+      statusMessage: "",
+      close: " ",
+      propsData: this.newValue,
+      search: "",
+      b: ""
     };
   },
+  props: ["newValue"],
   created() {
-    this.fechSubject();
+    // this.fechSubject();
   },
+  watch: {
+    statusIcon() {
+      this.statusIcon = "";
+    },
+    statusMessage() {
+      this.statusMessage = "";
+    }
+  },
+  async mounted() {
+    let response = await axios.get(this.url);
+    this.data = response.data;
+  },
+  computed: {},
   methods: {
+    serchData() {
+      this.search = this.b;
+      console.log("Click");
+    },
     async fechSubject() {
+      // eslint-disable-next-line no-unused-vars
+
       const url =
         "https://us-central1-newagent-47c20.cloudfunctions.net/api/subject";
       await axios.get(url).then(val => {
-        console.dir(val);
+        // console.dir("1" + typeof this.data);
+        // console.dir("2" + typeof val);
+        // console.dir("3" + typeof this.data);
         this.data = val.data;
+        // this.data.push(val.data);
+
         // console.log(this.data);
       });
+    },
+    async setIcon(index, val) {
+      let iconStatusSubject = "";
+      if (val == 1) {
+        iconStatusSubject = "mdi-calendar-check";
+        return await (this.statusIcon = iconStatusSubject);
+      } else {
+        iconStatusSubject = "";
+        return await (this.statusIcon = iconStatusSubject);
+      }
+    },
+    changStatus(val) {
+      if (val == 1) {
+        this.statusMessage = "สามารถลงทะเบียนได้ ";
+        this.statusIcon = "mdi-calendar-check";
+      } else if (val == 0) {
+        this.statusMessage = "ไม่สามารถลงทะเบียนได้ ";
+        this.statusIcon = "mdi-calendar-remove";
+      }
+    },
+    sort(val) {
+      this.data.sort((a, b) => (a[val] < b[val] ? -1 : 1));
     }
   }
 };
@@ -66,12 +150,16 @@ export default {
 
 <style>
 .subject.close {
-  border-left: 5px solid #f4511e;
+  border-left: 10px solid #f4511e;
 }
 
 .subject.open {
-  border-left: 5px solid #238aeb;
+  border-left: 10px solid #238aeb;
+}
+
+#card :hover {
+  border: 10px solid #238aeb;
 }
 </style>
 
-:class="`pa-3 subject ${subject.Type === 1 ? `close` : `open`} `"
+// :class="`pa-3 subject ${subject.Type === 1 ? `close` : `open`} `"
