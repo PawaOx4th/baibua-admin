@@ -23,7 +23,12 @@
           </v-alert>
           <!-- //** Search Student -->
           <v-hover v-slot:default="{ hover }">
-            <v-card raised class="mb-5 py-2" color="#F5F5F5" :elevation="hover ? 10 : 2">
+            <v-card
+              raised
+              class="mb-5 py-2"
+              color="#F5F5F5"
+              :elevation="hover ? 10 : 2"
+            >
               <v-row>
                 <v-col cols="12">
                   <v-layout row wrap class="ml-3">
@@ -210,7 +215,7 @@ export default {
   },
   data: () => ({
     valid: true,
-    snackbar: false,
+
     items: ["Item 1", "Item 2", "Item 3", "Item 4"],
     course: ["ปริญญาตรี ภาคปกติ 4 ปี", "ปริญญาตรี ภาคปกติ 3 ปี"],
     status: ["กำลังศึกษา", "หมดสถานะภาพนักศึกษา", "จบการศึกษา"],
@@ -221,6 +226,7 @@ export default {
     id: "",
     idedit: "",
 
+    snackbar: false,
     alert: false,
     snackbarMessage: "",
     snackbarStatus: "",
@@ -292,6 +298,7 @@ export default {
           this.studentData = res.data;
           this.idedit = this.id;
           this.id = "";
+
           this.overlay = true;
           this.snackbar = true;
           this.snackbarMessage = "ค้นหาข้อมูลสำเร็จ";

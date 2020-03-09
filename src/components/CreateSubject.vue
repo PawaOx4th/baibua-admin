@@ -102,6 +102,24 @@
         </v-card-actions>
       </v-card>
     </v-hover>
+    <v-overlay :value="overlay">
+      <v-snackbar
+        id="snackBar"
+        multi-line
+        top
+        v-model="snackbar"
+        :timeout="timeout"
+        :color="snackbarColor"
+        class="title font-weight-light"
+      >
+        {{ snackbarMessage }}
+        <v-btn
+          color="white black--text"
+          @click.native="(value = false), (overlay = false)"
+          >Close</v-btn
+        >
+      </v-snackbar>
+    </v-overlay>
   </div>
 </template>
 
@@ -142,26 +160,58 @@ export default {
         Type: 0,
         Status: 0
       },
-
       valid: true,
-      lazy: false
+      lazy: false,
+
+      snackbar: false,
+      alert: false,
+      snackbarMessage: "",
+      snackbarStatus: "",
+      snackbarColor: "",
+      overlay: false,
+      timeout: 2250
     };
   },
   watch: {
     sampleCredit() {
       this.Subject.Credit = parseInt(this.sampleCredit);
       console.log(this.Subject.Credit);
+    },
+    overlay() {
+      setInterval(() => (this.overlay = false), 2200);
     }
   },
+
   methods: {
     createSubject() {
       console.dir(this.Subject);
 
       const createSubjectUrl =
         "https://us-central1-newagent-47c20.cloudfunctions.net/api/subject";
-      axios.post(createSubjectUrl, this.Subject).then(response => {
-        console.log(response.status);
-      });
+      axios
+        .post(createSubjectUrl, this.Subject)
+        .then(response => {
+          console.log(response.status);
+
+          this.overlay = true;
+          this.snackbar = true;
+          this.snackbarMessage = `เพิ่มรายวิชา ${this.Subject.NameTH} สำเร็จ `;
+          this.snackbarStatus = "";
+          this.snackbarColor = "success";
+
+          this.$refs.form.reset();
+        })
+        .catch(err => {
+          console.log(err);
+
+          this.overlay = true;
+          this.snackbar = true;
+          this.snackbarMessage = `เกิดข้อผิดพลาด กรุณาตรวจสอบข้อมูล และลองใหม่อีกครั้ง`;
+          this.snackbarStatus = "";
+          this.snackbarColor = "error";
+
+          this.$refs.form.reset();
+        });
     }
   }
 };

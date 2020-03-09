@@ -5,6 +5,9 @@
     <!-- //* Header -->
     <SubjectSearch @sentData="sentData" />
 
+    <!-- //* Tooltip -->
+
+    <Tooltip />
     <v-container
       class=" d-flex justify-start align-center flex-wrap  pa-10"
       fluid
@@ -48,7 +51,7 @@
                 </v-col>
               </v-row>
               <div>
-                <v-row class="ma-0 pa-0">
+                <v-row class="ma-0 pa-0 d-flex ">
                   <v-col md="6" class="ma-0 pa-0 ">
                     <v-icon>{{
                       subject.Status == 1
@@ -62,6 +65,18 @@
                         : `ไม่สามารถลงทะเบียนได้`
                     }}
                   </v-col>
+                  <!-- <v-spacer></v-spacer>
+                  <v-row>
+                    <v-col md="10" class="ma-0 pa-0 blue">
+                      <v-chip
+                        :color="`${subject.Type == 0 ? `#179EE0` : `#f4511e`}`"
+                      >
+                        {{
+                          subject.Type == 0 ? `วิชาภาคบังคับ` : `วิชาเลือกเสรี`
+                        }}
+                      </v-chip>
+                    </v-col>
+                  </v-row> -->
                 </v-row>
               </div>
             </v-card>
@@ -79,11 +94,13 @@
 import axios from "axios";
 
 import SubjectSearch from "@/components/Subject_search.vue";
+import Tooltip from "@/components/AlertTooltip.vue";
 
 export default {
   name: "allsubject",
   components: {
-    SubjectSearch
+    SubjectSearch,
+    Tooltip
   },
   data() {
     return {
@@ -110,11 +127,17 @@ export default {
     },
     propsData() {
       console.log(this.propsData);
+    },
+    async data() {
+      // let response = await axios.get(this.url);
+      // this.data = response.data;
+      console.log("watch");
     }
   },
   async mounted() {
     let response = await axios.get(this.url);
     this.data = response.data;
+    console.log("mounted");
 
     // console.log(response.data[0].Status);
   },
