@@ -56,8 +56,6 @@
                         : `mdi-calendar-remove`
                     }}</v-icon>
 
-                    สถานะ :
-
                     {{
                       subject.Status == 1
                         ? `สามารถลงทะเบียนได้`
