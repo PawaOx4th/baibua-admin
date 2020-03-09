@@ -196,8 +196,8 @@ export default {
     createStudent() {
       const url_createStudent =
         "https://us-central1-newagent-47c20.cloudfunctions.net/api/student";
+      // eslint-disable-next-line no-unused-vars
       axios.post(url_createStudent, this.studentData).then(val => {
-        console.log(val.status);
         this.$refs.form.reset();
       });
     },
@@ -206,7 +206,7 @@ export default {
 
       axios.get(url_seachStudent).then(res => {
         alert(res.status);
-        console.log(res.data);
+        // console.log(res.data);
         this.studentData.push(res);
         this.id = "";
       });

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 <template>
   <v-container class="blue lighten-5">
     <v-row class="d-flex flex-row pa-12  " id="bg">
@@ -267,7 +268,7 @@ export default {
     editStudent() {
       const url_edit = `https://us-central1-newagent-47c20.cloudfunctions.net/api/student/updateDt/${this.studentData.Id}`;
 
-      console.log(this.studentData);
+      // console.log(this.studentData);
 
       axios
         .put(url_edit, this.studentData)
@@ -278,10 +279,11 @@ export default {
           this.snackbarStatus = "success";
           this.snackbarColor = "success";
           this.snackbarMessage = "เพิ่มข้อมูลสำเร็จ";
-          console.log("Put Data Success");
+          // console.log("Put Data Success");
         })
+        // eslint-disable-next-line no-unused-vars
         .catch(err => {
-          console.log(err.message);
+          // console.log(err.message);
           this.overlay = true;
           this.snackbar = true;
           this.snackbarMessage = "เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้งในภายหลัง";
@@ -305,8 +307,9 @@ export default {
           this.snackbarStatus = "";
           this.snackbarColor = "success";
         })
+        // eslint-disable-next-line no-unused-vars
         .catch(err => {
-          console.log(err.message);
+          // console.log(err.message);
           this.overlay = true;
           this.snackbar = true;
           this.snackbarMessage = "เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้งในภายหลัง";

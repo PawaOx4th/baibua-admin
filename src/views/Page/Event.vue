@@ -33,8 +33,6 @@ export default {
   mounted() {},
   methods: {
     async addEvent(e) {
-      await console.log(e);
-
       let data = await axios.post(
         "https://us-central1-newagent-47c20.cloudfunctions.net/api/news",
         e

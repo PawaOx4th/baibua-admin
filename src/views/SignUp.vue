@@ -33,13 +33,14 @@ export default {
     pressed() {
       // alert("submit");
       try {
+        // eslint-disable-next-line no-unused-vars
         const newUser = firebase
           .auth()
           .createUserWithEmailAndPassword(this.email, this.password);
-        console.log(newUser);
+        // console.log(newUser);
         this.$router.replace({ name: "home" });
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     }
   }

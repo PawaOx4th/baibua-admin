@@ -49,7 +49,14 @@
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer />
-                  <v-btn  block outlined color="#435B90" @click="pressed" class="#435B90--text">Login</v-btn>
+                  <v-btn
+                    block
+                    outlined
+                    color="#435B90"
+                    @click="pressed"
+                    class="#435B90--text"
+                    >Login</v-btn
+                  >
                   <!-- <v-btn color="primary" @click.alt="defultData">Login</v-btn> -->
                 </v-card-actions>
               </v-card>
@@ -89,7 +96,7 @@ export default {
   computed: {},
   watch: {
     overlay() {
-      setTimeout(() => this.$router.replace({ name: "home" }), 2500);
+      setTimeout(() => this.$router.replace({ name: "event" }), 2500);
     }
   },
   methods: {

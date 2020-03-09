@@ -29,12 +29,13 @@ export default {
   methods: {
     signOut() {
       try {
+        // eslint-disable-next-line no-unused-vars
         const userSignOut = firebase.auth().signOut();
-        console.log(userSignOut);
+        // console.log(userSignOut);
 
         this.$router.replace({ name: "singin" });
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     }
   }

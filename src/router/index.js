@@ -13,14 +13,7 @@ import Subject from "../views/Page/Subject";
 Vue.use(VueRouter);
 
 const routes = [
-  // {
-  //   path: "/home",
-  //   meta: { requiresAuth: true },
-  //   components: {
-  //     default: Home,
-  //     a: Event
-  //   }
-  // },
+
   {
     path: "/event",
     component: Home,
@@ -42,22 +35,13 @@ const routes = [
       }
     ]
   },
-  // {
-  //   path: "/",
-  //   name: "home",
-  //   component: Home
-  // },
+
   {
     path: "/",
     name: "singin",
     component: SignIn
   },
-  // {
-  //   path: "/home",
-  //   name: "home",
-  //   component: Home,
-  //   meta: { requiresAuth: true }
-  // },
+
   {
     path: "/signup",
     name: "signup",

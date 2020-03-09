@@ -77,7 +77,6 @@ export default {
       );
       alert();
       this.eventAll = eventData.data;
-      console.log("UpdateCard");
     }
   }
 };

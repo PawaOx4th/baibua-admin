@@ -190,19 +190,15 @@ export default {
     statusMessage() {
       this.statusMessage = "";
     },
-    propsData() {
-      console.log(this.propsData);
-    },
+    propsData() {},
     async data() {
       // let response = await axios.get(this.url);
       // this.data = response.data;
-      console.log("watch");
     }
   },
   async mounted() {
     let response = await axios.get(this.url);
     this.data = response.data;
-    console.log("mounted");
 
     // console.log(response.data[0].Status);
   },
