@@ -5,9 +5,74 @@
     <!-- //* Header -->
     <SubjectSearch @sentData="sentData" />
 
-    <!-- //* Tooltip -->
+    <!-- //* Options -->
+    <v-row>
+      <v-col md="8">
+        <!-- //* Tooltip -->
+        <Tooltip class="pa-0 pl-5" />
+      </v-col>
+      <v-col md="4">
+        <!-- /////////////////////////////////////////////////////////// -->
+        <v-row>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn
+                v-on="on"
+                color="#179EE0"
+                rounded
+                large
+                dark
+                class="mx-2"
+                @click="sort('Credit')"
+              >
+                <v-icon medium class="mr-2">mdi-alpha-c-circle</v-icon>
+                จำนวนหน่วยกิต
+              </v-btn>
+            </template>
+            <span>จัดเรียงตามหน่วยกิตจากน้อยไปมาก</span>
+          </v-tooltip>
 
-    <Tooltip />
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn
+                v-on="on"
+                color="#238AEB"
+                rounded
+                large
+                dark
+                class="mx-2"
+                @click="sort('Type')"
+              >
+                <v-icon medium class="mr-2">mdi-alpha-t-circle</v-icon>
+                ประเภทของวิชา
+              </v-btn>
+            </template>
+            <span>จัดเรียงตามประเภทของรายวิชา</span>
+          </v-tooltip>
+
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn
+                v-on="on"
+                color="#4663B2"
+                rounded
+                large
+                dark
+                class="mx-2"
+                @click="sort('Status')"
+              >
+                <v-icon medium class="mr-2">mdi-alpha-s-circle</v-icon>
+                สถานะของวิชา
+              </v-btn>
+            </template>
+            <span>จัดเรียงตามสถานะของรายวิชา เปิด / ปิด</span>
+          </v-tooltip>
+        </v-row>
+
+        <!-- /////////////////////////////////////////////////////////// -->
+      </v-col>
+    </v-row>
+
     <v-container
       class=" d-flex justify-start align-center flex-wrap  pa-10"
       fluid

@@ -1,6 +1,6 @@
 <template>
   <div id="tooltip">
-    <v-container fluid>
+    <v-container fluid class="pa-0">
       <v-row class=" mx-9">
         <v-col class="pa-0" md="3">
           <v-alert text dense color="teal" icon="mdi-clock-fast" border="left">

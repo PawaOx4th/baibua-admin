@@ -4,12 +4,14 @@
       <!-- //* Search -->
       <v-row no-gutters>
         <v-col cols="12">
-          <v-row>
+          <v-row justify="space-between">
             <v-col
               md="2"
-              class="pa-0 d-flex flex-row justify-center align-center"
+              class="pa-0 d-flex flex-row justify-start align-center"
             >
-              <h1 class="#2D3440--text">วิชาเรียน</h1>
+              <p class="#2D3440--text display-3 font-weight-black pa-0">
+                วิชาเรียน
+              </p>
             </v-col>
 
             <v-col md="7">
