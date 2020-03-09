@@ -23,7 +23,12 @@
           </v-alert>
           <!-- //** Search Student -->
           <v-hover v-slot:default="{ hover }">
-            <v-card raised class="mb-5 py-2" :elevation="hover ? 10 : 2">
+            <v-card
+              raised
+              class="mb-5 py-2"
+              color="#F5F5F5"
+              :elevation="hover ? 10 : 2"
+            >
               <v-row>
                 <v-col cols="12">
                   <v-layout row wrap class="ml-3">
@@ -44,7 +49,7 @@
                       <v-btn
                         large
                         width="150"
-                        color="pink accent-3"
+                        color="#4663B2"
                         elevation="6"
                         @click="seachStudent"
                       >
@@ -59,7 +64,7 @@
 
           <!-- //** Card Student Detail -->
           <v-hover v-slot:default="{ hover }">
-            <v-card class="pa-5" :elevation="hover ? 10 : 2"
+            <v-card class="pa-5" :elevation="hover ? 10 : 2" color="#F5F5F5"
               ><v-form md12 ref="form" v-model="valid" :lazy-validation="lazy">
                 <!-- //**  Name Th and Name EN -->
                 <v-row>
@@ -148,20 +153,22 @@
                 <!-- //* BTN -->
                 <v-flex class="d-flex flex-end  py-5 justify-end">
                   <v-btn
-                    color="warning"
+                    color="#405375"
                     x-large
-                    class="mr-4 white--text"
+                    class="mr-4 #405375--text "
                     @click="reset"
+                    outlined
                   >
                     Reset Form
                   </v-btn>
 
                   <v-btn
-                    color="success"
+                    color="#4075F4"
                     x-large
                     :disabled="!valid"
                     @click="editStudent"
                     width="200"
+                    class="white--text"
                   >
                     SUCCESS
                   </v-btn>
@@ -208,7 +215,7 @@ export default {
   },
   data: () => ({
     valid: true,
-    snackbar: false,
+
     items: ["Item 1", "Item 2", "Item 3", "Item 4"],
     course: ["ปริญญาตรี ภาคปกติ 4 ปี", "ปริญญาตรี ภาคปกติ 3 ปี"],
     status: ["กำลังศึกษา", "หมดสถานะภาพนักศึกษา", "จบการศึกษา"],
@@ -219,6 +226,7 @@ export default {
     id: "",
     idedit: "",
 
+    snackbar: false,
     alert: false,
     snackbarMessage: "",
     snackbarStatus: "",
@@ -290,6 +298,7 @@ export default {
           this.studentData = res.data;
           this.idedit = this.id;
           this.id = "";
+
           this.overlay = true;
           this.snackbar = true;
           this.snackbarMessage = "ค้นหาข้อมูลสำเร็จ";
@@ -311,6 +320,6 @@ export default {
 
 <style scoped>
 #snackBar {
-  font-size: 25px;
+  font-size: 18px;
 }
 </style>

@@ -17,7 +17,7 @@
           <v-col cols="12" sm="8" md="4">
             <v-hover v-slot:default="{ hover }">
               <v-card class="elevation-12" :elevation="hover ? 12 : 2">
-                <v-toolbar color="blue" dark>
+                <v-toolbar color="#257F9C" dark>
                   <v-toolbar-title>Login Admin</v-toolbar-title>
                 </v-toolbar>
                 <v-card-text>
@@ -49,7 +49,7 @@
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer />
-                  <v-btn color="info" @click="pressed">Login</v-btn>
+                  <v-btn  block outlined color="#435B90" @click="pressed" class="#435B90--text">Login</v-btn>
                   <!-- <v-btn color="primary" @click.alt="defultData">Login</v-btn> -->
                 </v-card-actions>
               </v-card>

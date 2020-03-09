@@ -8,6 +8,7 @@ import SignIn from "../views/SignIn";
 import SignUp from "../views/SignUp";
 import Event from "../views/Page/Event";
 import Student from "../views/Page/Student";
+import Subject from "../views/Page/Subject";
 
 Vue.use(VueRouter);
 
@@ -33,6 +34,11 @@ const routes = [
         path: "/student",
         component: Student,
         name: "Student"
+      },
+      {
+        path: "/subject",
+        component: Subject,
+        name: "Subject"
       }
     ]
   },

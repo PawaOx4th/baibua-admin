@@ -8,7 +8,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    appName: "Baibua Admin"
+    appName: "Baibua Admin",
+    refreshApi: false
   },
   mutations: {},
   actions: {

@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <v-app-bar app color="primary">
+    <v-app-bar app color="#405375">
       <v-app-bar-nav-icon
         @click.stop="tab = !tab"
         class="white--text"
@@ -17,11 +17,11 @@
       <TopHeader />
     </v-app-bar>
 
-    <v-navigation-drawer app color="blue" v-model="tab" temporary>
+    <v-navigation-drawer app color="#405375" v-model="tab" temporary>
       <v-list>
         <v-list-item>
           <v-list-item-avatar>
-            <v-img src="https://randomuser.me/api/portraits/men/78.jpg"></v-img>
+            <v-img src="../assets/icon.gif"></v-img>
           </v-list-item-avatar>
 
           <v-list-item-content>
@@ -82,7 +82,7 @@ export default {
         {
           title: "รายวิชา",
           icon: "mdi-calendar-text",
-          route: "/textcolor",
+          route: "/subject",
           stusus: "error"
         },
         {
