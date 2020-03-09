@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import firebase from "firebase";
 // import TopHeader from "../components/Top-Header";
 import Navber from "../components/Navber";
 
@@ -17,7 +18,15 @@ export default {
     // TopHeader
 
     Navber
-  }
+  },
+   beforeCreate() {
+    firebase.auth().onAuthStateChanged((user) => {
+        if (!user) {
+          this.$router.replace("/")
+          alert("You don't have a permission")
+        }
+    });
+  },
 };
 </script>
 

@@ -13,13 +13,10 @@ import Subject from "../views/Page/Subject";
 Vue.use(VueRouter);
 
 const routes = [
-
   {
     path: "/event",
     component: Home,
     name: "home",
-    auth: true,
-    meta: { requiresAuth: true },
     children: [
       { path: "/event", component: Event, name: "event" },
 

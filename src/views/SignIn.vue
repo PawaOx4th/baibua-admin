@@ -97,6 +97,7 @@ export default {
   watch: {
     overlay() {
       setTimeout(() => this.$router.replace({ name: "event" }), 2500);
+      // setTimeout(() => this.$router.replace("home"), 2500);
     }
   },
   methods: {
