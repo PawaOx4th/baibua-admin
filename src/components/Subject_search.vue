@@ -64,7 +64,8 @@ export default {
   data() {
     return {
       data: "",
-      subject_id: ""
+      subject_id: "",
+      dialog: ""
     };
   },
   // mounted() {
