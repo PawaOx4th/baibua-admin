@@ -175,7 +175,7 @@ export default {
   watch: {
     sampleCredit() {
       this.Subject.Credit = parseInt(this.sampleCredit);
-      console.log(this.Subject.Credit);
+      // console.log(this.Subject.Credit);
     },
     overlay() {
       setInterval(() => (this.overlay = false), 2200);
@@ -184,14 +184,15 @@ export default {
 
   methods: {
     createSubject() {
-      console.dir(this.Subject);
+      // console.dir(this.Subject);
 
       const createSubjectUrl =
         "https://us-central1-newagent-47c20.cloudfunctions.net/api/subject";
       axios
         .post(createSubjectUrl, this.Subject)
+        // eslint-disable-next-line no-unused-vars
         .then(response => {
-          console.log(response.status);
+          // console.log(response.status);
 
           this.overlay = true;
           this.snackbar = true;
@@ -201,8 +202,9 @@ export default {
 
           this.$refs.form.reset();
         })
+        // eslint-disable-next-line no-unused-vars
         .catch(err => {
-          console.log(err);
+          // console.log(err);
 
           this.overlay = true;
           this.snackbar = true;

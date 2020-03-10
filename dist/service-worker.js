@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.c8249d04d01901010488cd3809233a45.js"
+  "/precache-manifest.7d55ae780394580b86ceab42eb162828.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "baibuaadmin"});
