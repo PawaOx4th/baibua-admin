@@ -160,6 +160,7 @@ export default {
         Type: 0,
         Status: 0
       },
+
       valid: true,
       lazy: false,
 
