@@ -9,6 +9,7 @@ import SignUp from "../views/SignUp";
 import Event from "../views/Page/Event";
 import Student from "../views/Page/Student";
 import Subject from "../views/Page/Subject";
+import Section from "../views/Page/Section";
 
 Vue.use(VueRouter);
 
@@ -29,6 +30,11 @@ const routes = [
         path: "/subject",
         component: Subject,
         name: "Subject"
+      },
+      {
+        path: "/section",
+        component: Section,
+        name: "Section"
       }
     ]
   },

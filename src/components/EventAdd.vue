@@ -185,7 +185,7 @@ export default {
     },
     addEvent() {
       this.$emit("onSubmit", this.evenDetail);
-      // this.$refs.form.reset();
+      this.$refs.form.reset();
       // console.log(this.evenDetail);
     }
   }

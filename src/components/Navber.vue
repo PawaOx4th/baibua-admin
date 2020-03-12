@@ -42,7 +42,7 @@
           :to="item.route"
         >
           <v-list-item-icon>
-            <v-icon class="white--text">{{ item.icon }}</v-icon>
+            <v-icon class="white--text" medium>{{ item.icon }}</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
@@ -87,8 +87,8 @@ export default {
         },
         {
           title: "กลุ่ม",
-          icon: "mdi-help-box",
-          route: "/grid",
+          icon: "mdi-briefcase-account",
+          route: "/section",
           stusus: "success"
         },
         {
