@@ -41,7 +41,7 @@
                       </v-col>
                     </template>
                     <!-- //* Card In Dialog -->
-                    <CreateSubject />
+                    <CreateSection />
                     <!--  -->
                   </v-dialog>
                 </v-row>
@@ -56,12 +56,12 @@
 
 <script>
 // import axios from "axios";
-import CreateSubject from "./CreateSubject.vue";
+import CreateSection from "./CreateSection.vue";
 
 export default {
   name: "Searchsection",
   components: {
-    CreateSubject
+    CreateSection
   },
   data() {
     return {
