@@ -11,18 +11,18 @@
               <v-row>
                 <!-- ///////////////////////////////////////////////////////////////////////////////// -->
                 <!-- //* Sec Input -->
-                <v-col cols="12" sm="6" md="2">
+                <v-col cols="12" sm="6" md="3">
                   <v-text-field
                     label=" * ลำดับกลุ่มเรียน"
                     hint="ระบุเป็นตัวเลขเท่านั้นห้ามมีสัญลักษณ์"
                     :rules="RuleId"
-                    v-model="Section.Sec"
+                    v-model="sec"
                     required
                   ></v-text-field>
                 </v-col>
                 <!-- ///////////////////////////////////////////////////////////////////////////////// -->
                 <!-- //* Subject Input -->
-                <v-col cols="12" sm="6" md="2">
+                <v-col cols="12" sm="6" md="3">
                   <v-text-field
                     label=" * รหัสวิชา"
                     hint="ระบุเป็นตัวเลขเท่านั้นห้ามมีสัญลักษณ์"
@@ -33,38 +33,128 @@
                 </v-col>
                 <!-- ///////////////////////////////////////////////////////////////////////////////// -->
                 <!-- //* Subject Date -->
-                <v-col cols="12" sm="6" md="2">
-                  <v-select
-                    :items="dayCreate"
-                    label="วันที่สร้าง"
-                    :rules="RuleDate"
-                  ></v-select>
+                <v-col cols="12" sm="6" md="5">
+                  <v-menu
+                    ref="menu"
+                    v-model="menu"
+                    :close-on-content-click="false"
+                    :return-value.sync="date"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="290px"
+                  >
+                    <template v-slot:activator="{ on }">
+                      <v-text-field
+                        v-model="date"
+                        label="Picker in menu"
+                        prepend-icon="event"
+                        readonly
+                        v-on="on"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker v-model="date" no-title scrollable>
+                      <v-spacer></v-spacer>
+                      <v-btn text color="primary" @click="menu = false"
+                        >Cancel</v-btn
+                      >
+                      <v-btn text color="primary" @click="$refs.menu.save(date)"
+                        >OK</v-btn
+                      >
+                    </v-date-picker>
+                  </v-menu>
                 </v-col>
                 <!-- ///////////////////////////////////////////////////////////////////////////////// -->
-                <!-- //* Subject Mounth -->
+              </v-row>
+              <!-- //******************************************************************************************* */ -->
+              <v-row row wrap>
+                <!-- ///////////////////////////////////////////////////////////////////////////////// -->
+                <!-- //* Week Study -->
                 <v-col cols="12" sm="6" md="3">
                   <v-select
-                    :items="mounthCreate"
-                    label="เดือนที่สร้าง"
-                    :rules="RuleMounth"
-                  ></v-select>
+                    :items="dayName"
+                    v-model="Section.Week"
+                    label=" * วันที่เรียน"
+                    hint="เลือกวันที่เรียน"
+                  >
+                  </v-select>
                 </v-col>
                 <!-- ///////////////////////////////////////////////////////////////////////////////// -->
-                <!-- //* Subject Year -->
-                <v-col cols="12" sm="6" md="3">
-                  <v-select
-                    :items="years"
-                    label="ปีที่สร้าง"
-                    :rules="RuleYear"
-                  ></v-select>
+                <!-- //* Study Time Start -->
+                <v-col cols="12" sm="6" md="4">
+                  <v-menu
+                    ref="menu"
+                    v-model="menuTimeStart"
+                    :close-on-content-click="false"
+                    :nudge-right="40"
+                    :return-value.sync="time"
+                    transition="scale-transition"
+                    offset-y
+                    max-width="290px"
+                    min-width="290px"
+                  >
+                    <template v-slot:activator="{ on }">
+                      <v-text-field
+                        v-model="timeStart"
+                        label="เวลาเริ่มสอน"
+                        prepend-icon="mdi-alarm-multiple"
+                        readonly
+                        v-on="on"
+                        :rules="isNotEmty"
+                        required
+                      ></v-text-field>
+                    </template>
+                    <v-time-picker
+                      format="24hr"
+                      v-if="menuTimeStart"
+                      v-model="timeStart"
+                      full-width
+                      @click:minute="$refs.menu.save(time)"
+                    ></v-time-picker>
+                  </v-menu>
                 </v-col>
                 <!-- ///////////////////////////////////////////////////////////////////////////////// -->
+                <!-- //* Study Time End -->
+                <v-col cols="12" sm="6" md="4">
+                  <v-menu
+                    ref="menu"
+                    v-model="menuTimeEnd"
+                    :close-on-content-click="false"
+                    :nudge-right="40"
+                    :return-value.sync="time"
+                    transition="scale-transition"
+                    offset-y
+                    max-width="290px"
+                    min-width="290px"
+                  >
+                    <template v-slot:activator="{ on }">
+                      <v-text-field
+                        v-model="timeEnd"
+                        label="เวลาสิ้นสุดการสอน"
+                        prepend-icon="mdi-alarm-off"
+                        readonly
+                        v-on="on"
+                        :rules="isNotEmty"
+                        required
+                      ></v-text-field>
+                    </template>
+                    <v-time-picker
+                      format="24hr"
+                      v-if="menuTimeEnd"
+                      v-model="timeEnd"
+                      full-width
+                      @click:minute="$refs.menu.save(time)"
+                    ></v-time-picker>
+                  </v-menu>
+                </v-col>
+                <!-- ///////////////////////////////////////////////////////////////////////////////// -->
+                <!-- //* Teacher1 -->
                 <v-col cols="12" sm="6" md="4">
                   <v-select
                     :items="TeacherALL"
                     item-text="NameTH"
                     item-value="Id"
                     label="*อาจารย์ประจำวิชา คนที่ 1"
+                    v-model="Section.Teacher1"
                     :rules="RuleTearcher"
                   ></v-select>
                 </v-col>
@@ -74,6 +164,7 @@
                     item-text="NameTH"
                     item-value="Id"
                     label="อาจารย์ประจำวิชา คนที่ 2 "
+                    v-model="Section.Teacher2"
                   ></v-select>
                 </v-col>
                 <v-col cols="12" sm="6" md="4">
@@ -82,6 +173,7 @@
                     item-text="NameTH"
                     item-value="Id"
                     label="อาจารย์ประจำวิชา คนที่ 3 "
+                    v-model="Section.Teacher3"
                   ></v-select>
                 </v-col>
               </v-row>
@@ -101,6 +193,9 @@
           </v-row>
         </v-card-text>
         <v-card-actions>
+          <v-alert dense outlined type="warning" class="ma-0 ml-3">
+            กรุณาระบุบ อาจารย์ประจำวิชาอย่างน้อย 1 ท่าน
+          </v-alert>
           <v-spacer></v-spacer>
           <!-- <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn> -->
           <v-btn
@@ -109,7 +204,7 @@
             x-large
             width="200"
             class="ma-3 white--text"
-            @click="createSubject"
+            @click="createSection"
             >Create</v-btn
           >
         </v-card-actions>
@@ -146,6 +241,8 @@ export default {
     return {
       dialog: true,
       sampleCredit: "",
+      sec: null,
+      yaerfild: "",
       SubjectType: [
         // { label: "", value: null },
         { label: "วิชาภาคบังคับ", value: 0 },
@@ -156,6 +253,8 @@ export default {
         { label: "ไม่เปิดให้ลงทะเบียน", value: 0 },
         { label: "สามาลงทะเบียนได้", value: 1 }
       ],
+      date: new Date().toISOString().substr(0, 10),
+      menu: false,
 
       TeacherALL: [],
       urlAllTeacher:
@@ -171,39 +270,22 @@ export default {
         countValue: v => v.length < 1 || "กรุณาระบุหน่วยกิต",
         emtyValue: v => !!v || "กรุณาระบุหน่วยกิต"
       },
+      isNotEmty: [v => !!v || "กรุณาระบุบข้อมูล"],
 
-      dayCreate: [
-        "01",
-        "02",
-        "03",
-        "04",
-        "05",
-        "06",
-        "07",
-        "08",
-        "09",
-        "10",
-        "11",
-        "12",
-        "13",
-        "14",
-        "15",
-        "16",
-        "17",
-        "18",
-        "19",
-        "20",
-        "21",
-        "22",
-        "23",
-        "24",
-        "25",
-        "26",
-        "27",
-        "28",
-        "29",
-        "30",
-        "31"
+      timeStart: null,
+      timeEnd: null,
+      time: null,
+      menuTimeStart: false,
+      menuTimeEnd: false,
+
+      dayName: [
+        "วันอาทิตย์",
+        "วันจันทร์",
+        "วันอังคาร",
+        "วันพุทธ์",
+        "วันพฤหัสบดี",
+        "วันศุกร์",
+        "วันเสาร์"
       ],
 
       mounthCreate: [
@@ -221,17 +303,16 @@ export default {
         "ธันวาคม"
       ],
 
-      yearCreate: [],
-
       Section: {
-        Sec: null, //Integer
-        Subject: "", // String
-        Day: "", //
-        Month: null,
-        Year: null,
-        Teacher1: null,
-        Teacher2: null,
-        Teacher3: null
+        Sec: 0, //Integer 1
+        Subject: "", // String 2
+        Date: "", // 3
+        Week: "", // 4
+        Start: "", // 5
+        Finish: "", // 6
+        Teacher1: "", // 7
+        Teacher2: "", //8
+        Teacher3: "" //9
       },
 
       valid: true,
@@ -256,14 +337,28 @@ export default {
     }
   },
   watch: {
-    sampleCredit() {
-      this.Subject.Credit = parseInt(this.sampleCredit);
+    sec() {
+      this.Section.Sec = parseInt(this.sec);
       // console.log(this.Subject.Credit);
     },
     overlay() {
       setInterval(() => (this.overlay = false), 2200);
+    },
+    date() {
+      this.Section.Date = this.date;
+    },
+    timeStart() {
+      //Set Time
+      // console.log(this.timeStart);
+      this.Section.Start = this.timeStart;
+    },
+    timeEnd() {
+      //Set Time
+      // console.log(this.timeEnd);
+      this.Section.Finish = this.timeEnd;
     }
   },
+
   async mounted() {
     let tearchs = await axios.get(this.urlAllTeacher);
     this.TeacherALL = tearchs.data;
@@ -271,36 +366,30 @@ export default {
   },
 
   methods: {
-    createSubject() {
-      // console.dir(this.Subject);
+    createSection() {
+      // console.dir(this.Section);
+      this.Section.Date = this.date;
+      console.log(this.Section);
 
-      const createSubjectUrl =
-        "https://us-central1-newagent-47c20.cloudfunctions.net/api/subject";
+      this.Section.Year = this.yaerfild.toString();
+      let url = "https://us-central1-newagent-47c20.cloudfunctions.net/api/sec";
       axios
-        .post(createSubjectUrl, this.Subject)
+        .post(url, this.Section)
         // eslint-disable-next-line no-unused-vars
         .then(response => {
-          // console.log(response.status);
-
           this.overlay = true;
           this.snackbar = true;
-          this.snackbarMessage = `เพิ่มรายวิชา ${this.Subject.NameTH} สำเร็จ `;
+          this.snackbarMessage = `เพิ่ม กลุ่ม ${this.Section.Subject} สำเร็จ `;
           this.snackbarStatus = "";
           this.snackbarColor = "success";
-
-          this.$refs.form.reset();
         })
         // eslint-disable-next-line no-unused-vars
         .catch(err => {
-          // console.log(err);
-
           this.overlay = true;
           this.snackbar = true;
           this.snackbarMessage = `เกิดข้อผิดพลาด กรุณาตรวจสอบข้อมูล และลองใหม่อีกครั้ง`;
           this.snackbarStatus = "";
           this.snackbarColor = "error";
-
-          this.$refs.form.reset();
         });
     }
   }
