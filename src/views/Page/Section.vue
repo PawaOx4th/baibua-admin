@@ -1,7 +1,5 @@
 <template>
   <div id="section">
-    <div class="display-2 font-weight-black">{{ title }}</div>
-
     <!-- Fetch All  Section  -->
     <AllSection />
   </div>

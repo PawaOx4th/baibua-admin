@@ -174,7 +174,7 @@ export default {
       statusIcon: "",
       statusMessage: "",
       close: " ",
-      propsData: this.newValue,
+
       search: "",
       subjectName: ""
     };
@@ -190,12 +190,16 @@ export default {
     statusMessage() {
       this.statusMessage = "";
     },
-    propsData() {},
-    async data() {
-      // let response = await axios.get(this.url);
-      // this.data = response.data;
-    }
+    propsData() {}
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///? CALL API AUTO
+    // async data() {
+    //   let response = await axios.get(this.url);
+    //   this.data = response.data;
+    // }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
   },
+
   async mounted() {
     let response = await axios.get(this.url);
     this.data = response.data;
