@@ -27,6 +27,11 @@
       overlay: false,
       timeout: 2250
 
+
+overlay() {
+      setInterval(() => (this.overlay = false), 2200);
+    },
+
 //** #Success
 
        this.overlay = true;

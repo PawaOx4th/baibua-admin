@@ -26,19 +26,23 @@
               <v-row row wrap>
                 <v-col md="12" xs="12" class="">
                   <div
-                    class="d-flex  flex-row justify-space-between  align-center"
+                    class="d-flex  flex-row justify-space-between   align-center"
                   >
                     <!-- "#179EE0" -->
                     <v-chip
                       :color="`${section.Status == 1 ? `#179EE0` : `#DADBDD`}`"
-                      class="white--text pa-3"
+                      class="white--text pa-3 "
                       medium
                     >
                       {{ section.Subject }}
                     </v-chip>
                     <!-- ///////////////////////////////////////////////////////////////////////////////// -->
-                    <!-- // Edit Button -->
-                    <EditButton :subID="section.Id" />
+                    <div class=" d-flex  flex-row">
+                      <!-- // Add Button -->
+                      <AddStudent class="mr-3" :section="section.Id" />
+                      <!-- // Edit Button -->
+                      <EditButton :subID="section.Id" />
+                    </div>
                     <!-- ///////////////////////////////////////////////////////////////////////////////// -->
                   </div>
 
@@ -82,12 +86,14 @@ import axios from "axios";
 
 import EditButton from "./EditSubject";
 import SearchSection from "@/components/SearchSection.vue";
+import AddStudent from "@/components/AddStudent.vue";
 
 export default {
   name: "AllSection",
   components: {
     EditButton,
-    SearchSection
+    SearchSection,
+    AddStudent
   },
   props: ["newValue"],
   data() {
