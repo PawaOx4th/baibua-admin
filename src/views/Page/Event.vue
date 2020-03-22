@@ -5,7 +5,7 @@
       <!-- <v-btn @click="fetchEvent" color="success">Print Type</v-btn> -->
       <v-layout class="d-flex" justify-space-between="true" block>
         <!-- -------------------------------------------------------------------------------- -->
-        <EventAdd @onSubmit="addEvent" />
+        <EventAdd  />
         <!--  -->
         <CardEvent />
         <!-- -------------------------------------------------------------------------------- -->
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 
 import EventAdd from "@/components/EventAdd.vue";
 import CardEvent from "@/components/CardEvent.vue";
@@ -32,14 +32,20 @@ export default {
   computed: {},
   mounted() {},
   methods: {
-    async addEvent(e) {
-      let data = await axios.post(
-        "https://us-central1-newagent-47c20.cloudfunctions.net/api/news",
-        e
-      );
-
-      alert(JSON.stringify(data));
-    }
+    // async addEvent(e) {
+    //   console.log(e);
+    //   // await axios
+    //   //   .post(
+    //   //     "https://us-central1-newagent-47c20.cloudfunctions.net/api/news",
+    //   //     e
+    //   //   )
+    //   //   .then(response => {
+    //   //     console.log(response.status);
+    //   //   })
+    //   //   .catch(error => {
+    //   //     console.log(error.status);
+    //   //   });
+    // }
   }
 };
 </script>

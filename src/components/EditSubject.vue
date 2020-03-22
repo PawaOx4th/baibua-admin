@@ -256,7 +256,7 @@ export default {
       this.SubjectDetail.StudyTime[2] = this.timeEnd;
     },
     StatusSubject() {
-      console.dir(this.StatusSubject.status);
+      // console.dir(this.StatusSubject.status);
     },
     overlay() {
       setInterval(() => (this.overlay = false), 2200);
@@ -275,8 +275,9 @@ export default {
           this.SubjectDetail = response.data;
           // console.log(this.SubjectDetail);
         })
+        // eslint-disable-next-line no-unused-vars
         .catch(error => {
-          console.log(error);
+          // console.log(error);
         });
     },
     editSubject() {

@@ -133,11 +133,31 @@
         </v-row>
       </v-container>
     </v-flex>
+    <!-- ///////////////////////////////////////////////////////////////////////////////// -->
+    <v-overlay :value="overlay">
+      <v-snackbar
+        id="snackBar"
+        multi-line
+        top
+        v-model="snackbar"
+        :timeout="timeout"
+        :color="snackbarColor"
+        class="title font-weight-mediumt"
+      >
+        {{ snackbarMessage }}
+        <v-btn
+          color="white black--text "
+          @click.native="(value = false), (overlay = false)"
+          >Close</v-btn
+        >
+      </v-snackbar>
+    </v-overlay>
+    <!-- ///////////////////////////////////////////////////////////////////////////////// -->
   </v-app>
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 export default {
   name: "event",
   data() {
@@ -176,15 +196,47 @@ export default {
         requiredTime: value => !!value || "กรุณาระบุเวลา กิจกรรม/โครงการ",
         requiredDetail: value =>
           !!value || "กรุณาระบุรายละเอียด กิจกรรม/โครงการ"
-      }
+      },
+      snackbar: false,
+      alert: false,
+      snackbarMessage: "",
+      snackbarStatus: "",
+      snackbarColor: "",
+      overlay: false,
+      timeout: 2250
     };
+  },
+  watch: {
+    overlay() {
+      setInterval(() => (this.overlay = false), 2200);
+    }
   },
   methods: {
     sort(e) {
       this.eventAll.sort((a, b) => (a[e] < b[e] ? -1 : 1));
     },
-    addEvent() {
-      this.$emit("onSubmit", this.evenDetail);
+    async addEvent() {
+      await axios
+        .post(
+          "https://us-central1-newagent-47c20.cloudfunctions.net/api/news",
+          this.evenDetail
+        )
+        // eslint-disable-next-line no-unused-vars
+        .then(response => {
+          this.overlay = true;
+          this.snackbar = true;
+          this.snackbarMessage = `เพิ่ม กิจกรรม ข่าวสารสำเร็จ `;
+          this.snackbarStatus = "";
+          this.snackbarColor = "success";
+        })
+        // eslint-disable-next-line no-unused-vars
+        .catch(error => {
+          this.overlay = true;
+          this.snackbar = true;
+          this.snackbarMessage = `เกิดข้อผิดพลาด กรุณาตรวจสอบข้อมูล และลองใหม่อีกครั้ง`;
+          this.snackbarStatus = "";
+          this.snackbarColor = "error";
+        });
       this.$refs.form.reset();
       // console.log(this.evenDetail);
     }

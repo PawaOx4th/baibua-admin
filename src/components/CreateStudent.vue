@@ -152,6 +152,26 @@
         </v-flex>
       </v-layout>
     </v-row>
+    <!-- ///////////////////////////////////////////////////////////////////////////////// -->
+    <v-overlay :value="overlay">
+      <v-snackbar
+        id="snackBar"
+        multi-line
+        top
+        v-model="snackbar"
+        :timeout="timeout"
+        :color="snackbarColor"
+        class="title font-weight-mediumt"
+      >
+        {{ snackbarMessage }}
+        <v-btn
+          color="white black--text "
+          @click.native="(value = false), (overlay = false)"
+          >Close</v-btn
+        >
+      </v-snackbar>
+    </v-overlay>
+    <!-- ///////////////////////////////////////////////////////////////////////////////// -->
   </v-container>
 </template>
 
@@ -178,8 +198,20 @@ export default {
       Status: "",
       Faculty: "",
       Major: ""
-    }
+    },
+    snackbar: false,
+    alert: false,
+    snackbarMessage: "",
+    snackbarStatus: "",
+    snackbarColor: "",
+    overlay: false,
+    timeout: 2250
   }),
+  watch: {
+    overlay() {
+      setInterval(() => (this.overlay = false), 2200);
+    }
+  },
 
   methods: {
     validate() {
@@ -197,9 +229,26 @@ export default {
       const url_createStudent =
         "https://us-central1-newagent-47c20.cloudfunctions.net/api/student";
       // eslint-disable-next-line no-unused-vars
-      axios.post(url_createStudent, this.studentData).then(val => {
-        this.$refs.form.reset();
-      });
+      axios
+        .post(url_createStudent, this.studentData)
+        // eslint-disable-next-line no-unused-vars
+        .then(val => {
+          this.overlay = true;
+          this.snackbar = true;
+          this.snackbarMessage = `เพิ่มนักศึกษาสำเร็จ`;
+          this.snackbarStatus = "";
+          this.snackbarColor = "success";
+
+          this.$refs.form.reset();
+        })
+        // eslint-disable-next-line no-unused-vars
+        .catch(error => {
+          this.overlay = true;
+          this.snackbar = true;
+          this.snackbarMessage = `เกิดข้อผิดพลาด กรุณาตรวจสอบข้อมูล และลองใหม่อีกครั้ง`;
+          this.snackbarStatus = "";
+          this.snackbarColor = "error";
+        });
     },
     async seachStudent() {
       const url_seachStudent = `https://us-central1-newagent-47c20.cloudfunctions.net/api/student/filterId/${this.id}`;

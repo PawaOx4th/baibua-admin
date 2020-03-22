@@ -362,14 +362,12 @@ export default {
   async mounted() {
     let tearchs = await axios.get(this.urlAllTeacher);
     this.TeacherALL = tearchs.data;
-    console.dir(tearchs);
   },
 
   methods: {
     createSection() {
       // console.dir(this.Section);
       this.Section.Date = this.date;
-      console.log(this.Section);
 
       this.Section.Year = this.yaerfild.toString();
       let url = "https://us-central1-newagent-47c20.cloudfunctions.net/api/sec";

@@ -34,7 +34,7 @@ overlay() {
 
 //** #Success
 
-       this.overlay = true;
+          this.overlay = true;
           this.snackbar = true;
           this.snackbarMessage = `แก้ไข รหัสวิชา:${this.SubjectDetail.Subject} สำเร็จ `;
           this.snackbarStatus = "";
@@ -42,7 +42,7 @@ overlay() {
 
 //** # Error
 
-   this.overlay = true;
+          this.overlay = true;
           this.snackbar = true;
           this.snackbarMessage = `เกิดข้อผิดพลาด กรุณาตรวจสอบข้อมูล และลองใหม่อีกครั้ง`;
           this.snackbarStatus = "";
