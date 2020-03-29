@@ -30,8 +30,15 @@
         class="elevation-1"
         :search="search"
       >
+        <!-- 
+          **  Dialog Edit Student 
+         -->
+        <template v-slot:item.actions="{ item }">
+          <EditStudent :stuData="item" />
+        </template>
+
         <template v-slot:no-data>
-          <v-btn color="primary">Reset</v-btn>
+          <v-btn color="warning">Reset</v-btn>
         </template>
       </v-data-table>
     </v-container>
@@ -39,10 +46,15 @@
 </template>
 
 <script>
+import EditStudent from "@/components/EditStudent.vue";
+
 import { fecthStudents } from "@/API/Student.js";
 
 export default {
   name: "Student",
+  components: {
+    EditStudent
+  },
   data() {
     return {
       Students: [],
@@ -76,6 +88,7 @@ export default {
         {
           text: "จัดการ",
           align: "center",
+          value: "actions",
           sortable: false
           // value: "Status"
         }

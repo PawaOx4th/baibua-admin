@@ -1,49 +1,15 @@
- <!-- ///////////////////////////////////////////////////////////////////////////////// -->
-      <v-overlay :value="overlay">
-        <v-snackbar
-          id="snackBar"
-          multi-line
-          top
-          v-model="snackbar"
-          :timeout="timeout"
-          :color="snackbarColor"
-          class="title font-weight-mediumt"
-        >
-          {{ snackbarMessage }}
-          <v-btn
-            color="white black--text "
-            @click.native="(value = false), (overlay = false)"
-            >Close</v-btn
-          >
-        </v-snackbar>
-      </v-overlay>
-      <!-- ///////////////////////////////////////////////////////////////////////////////// -->
+.then(res => {
+          this.$swal.fire({
+            icon: "success",
+            titleText: "แก้ไขบทบาทนักศึกษา สำเร็จ"
+          });
 
-       snackbar: false,
-      alert: false,
-      snackbarMessage: "",
-      snackbarStatus: "",
-      snackbarColor: "",
-      overlay: false,
-      timeout: 2250
-
-
-overlay() {
-      setInterval(() => (this.overlay = false), 2200);
-    },
-
-//** #Success
-
-          this.overlay = true;
-          this.snackbar = true;
-          this.snackbarMessage = `แก้ไข รหัสวิชา:${this.SubjectDetail.Subject} สำเร็จ `;
-          this.snackbarStatus = "";
-          this.snackbarColor = "success";
-
-//** # Error
-
-          this.overlay = true;
-          this.snackbar = true;
-          this.snackbarMessage = `เกิดข้อผิดพลาด กรุณาตรวจสอบข้อมูล และลองใหม่อีกครั้ง`;
-          this.snackbarStatus = "";
-          this.snackbarColor = "error";
+          this.dialog = false;
+        })
+        // eslint-disable-next-line no-unused-vars
+        .catch(err => {
+          this.$swal.fire({
+            icon: "error",
+            titleText: "เกิดข้อผิดพลาด กรุณาตรวจสอบข้อมูล และลองใหม่อีกครั้ง"
+          });
+        });
