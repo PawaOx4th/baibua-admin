@@ -25,9 +25,7 @@
           </v-list-item-avatar>
 
           <v-list-item-content>
-            <v-list-item-title class="white--text"
-              >John Leider</v-list-item-title
-            >
+            <v-list-item-title class="white--text">Admin</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <!--  -->
@@ -74,7 +72,13 @@ export default {
           stusus: "warning"
         },
         {
-          title: "ข้อมูลนักศึกษา",
+          title: "ผู้ใช้งานระบบ",
+          icon: "mdi-account-details-outline",
+          route: "/user",
+          stusus: "info"
+        },
+        {
+          title: "นักศึกษา",
           icon: "mdi-account-details-outline",
           route: "/student",
           stusus: "info"

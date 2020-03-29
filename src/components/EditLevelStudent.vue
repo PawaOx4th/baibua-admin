@@ -1,6 +1,6 @@
 <template>
   <div id="EditeLevelStudent">
-    <!-- ///////////////////////////////////////////////////////////////////////////////// -->
+   
     <v-dialog v-model="dialog" max-width="800px" transition="dialog-transition">
       <template v-slot:activator="{ on }">
         <v-icon v-on="on">mdi-pencil</v-icon>
@@ -13,6 +13,7 @@
             </v-list-item-title>
             <v-list-item-subtitle> {{ userId }} </v-list-item-subtitle>
           </v-list-item-content>
+          
 
           <v-list-item-content>
             <v-select
@@ -27,7 +28,7 @@
         </v-list-item>
       </v-card>
     </v-dialog>
-    <!-- ///////////////////////////////////////////////////////////////////////////////// -->
+   
   </div>
 </template>
 
@@ -68,20 +69,15 @@ export default {
       EditeUserLevel(this.userId, this.NewLavel)
         // eslint-disable-next-line no-unused-vars
         .then(res => {
-          // console.log(res.message);
-          // console.log("200");
           this.$swal.fire({
             icon: "success",
-            titleText: "แก้ไขบทบาทนักศึกษา สำเร็จ",
-            text: ""
+            titleText: "แก้ไขบทบาทนักศึกษา สำเร็จ"
           });
 
           this.dialog = false;
         })
         // eslint-disable-next-line no-unused-vars
         .catch(err => {
-          // console.log(err.message);
-          // console.log("404");
           this.$swal.fire({
             icon: "error",
             titleText: "เกิดข้อผิดพลาด กรุณาตรวจสอบข้อมูล และลองใหม่อีกครั้ง"
