@@ -43,9 +43,17 @@
           <!--  -->
         </template>
 
-        <!-- *** -->
-        <template v-slot:no-data>
-          <v-btn color="primary">Reset</v-btn>
+        <!-- 
+            * loading Data
+           -->
+        <template>
+          <v-progress-circular
+            class="pa-5"
+            indeterminate
+            color="info"
+            :size="70"
+            :width="7"
+          ></v-progress-circular>
         </template>
       </v-data-table>
     </v-container>

@@ -1,9 +1,14 @@
 <template>
   <div id="Student">
     <!-- 
+      * Create Student
+     -->
+    <CreateStudent />
+
+    <!-- 
       ** Search Students Form Table
      -->
-    <v-container class="mt-12">
+    <v-container>
       <v-card>
         <v-card-title>
           ค้นหาข้อมูลนักศึกษา
@@ -38,7 +43,16 @@
         </template>
 
         <template v-slot:no-data>
-          <v-btn color="warning">Reset</v-btn>
+          <!-- 
+            * loading Data
+           -->
+          <v-progress-circular
+            class="pa-5"
+            indeterminate
+            color="warning"
+            :size="70"
+            :width="7"
+          ></v-progress-circular>
         </template>
       </v-data-table>
     </v-container>
@@ -47,13 +61,15 @@
 
 <script>
 import EditStudent from "@/components/EditStudent.vue";
+import CreateStudent from "@/components/CreateStudent.vue";
 
 import { fecthStudents } from "@/API/Student.js";
 
 export default {
   name: "Student",
   components: {
-    EditStudent
+    EditStudent,
+    CreateStudent
   },
   data() {
     return {

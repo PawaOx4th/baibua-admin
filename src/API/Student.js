@@ -6,8 +6,6 @@ export async function fecthStudents() {
     "https://us-central1-newagent-47c20.cloudfunctions.net/api/student"
   );
 
-  console.dir(result.data);
-
   return result;
 }
 
