@@ -120,7 +120,7 @@ export default {
 
     this.Section = SectionObj.data;
 
-    console.log(this.Section);
+    // console.log(this.Section);
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   },
   computed: {

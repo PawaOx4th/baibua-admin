@@ -14,7 +14,7 @@ export function EditeUserLevel(id, newLavel) {
     `https://us-central1-newagent-47c20.cloudfunctions.net/api/user/updateLv/${id}`,
     newLavel
   );
-  console.log(newLavel.data);
+  // console.log(newLavel.data);
 
   return result;
 }
