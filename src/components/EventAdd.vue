@@ -202,17 +202,16 @@ export default {
            */
           this.$swal.fire({
             icon: "success",
-            title: "เพิ่มข่าวสาร กิจกรรม ใหม่ สำเร็จ",
+            titleText: "เพิ่มข่าวสาร กิจกรรม ใหม่ สำเร็จ",
             text: ""
           });
         })
         // eslint-disable-next-line no-unused-vars
         .catch(error => {
-          this.overlay = true;
-          this.snackbar = true;
-          this.snackbarMessage = `เกิดข้อผิดพลาด กรุณาตรวจสอบข้อมูล และลองใหม่อีกครั้ง`;
-          this.snackbarStatus = "";
-          this.snackbarColor = "error";
+          this.$swal.fire({
+            icon: "error",
+            titleText: "เกิดข้อผิดพลาด กรุณาตรวจสอบข้อมูล และลองใหม่อีกครั้ง"
+          });
         });
       this.$refs.form.reset();
 
