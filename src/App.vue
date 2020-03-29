@@ -20,7 +20,7 @@ export default {
   })
 };
 </script>
-<style>
+<style scoped>
 @import url("https://fonts.googleapis.com/css?family=Kanit:400,500,700,900&display=swap&subset=thai");
 *,
 html {

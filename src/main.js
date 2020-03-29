@@ -7,11 +7,15 @@ import vuetify from "./plugins/vuetify";
 import * as firebase from "firebase/app";
 import { firebaseConfig } from "./config";
 import axios from "axios";
+import VueSweetalert2 from "vue-sweetalert2";
+
+import "sweetalert2/dist/sweetalert2.min.css";
 
 Vue.prototype.$axios = axios;
 Vue.config.productionTip = false;
 
 Vue.use(vuetify);
+Vue.use(VueSweetalert2);
 
 firebase.initializeApp(firebaseConfig);
 

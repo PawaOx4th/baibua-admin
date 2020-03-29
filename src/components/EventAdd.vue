@@ -133,30 +133,11 @@
         </v-row>
       </v-container>
     </v-flex>
-    <!-- ///////////////////////////////////////////////////////////////////////////////// -->
-    <v-overlay :value="overlay">
-      <v-snackbar
-        id="snackBar"
-        multi-line
-        top
-        v-model="snackbar"
-        :timeout="timeout"
-        :color="snackbarColor"
-        class="title font-weight-mediumt"
-      >
-        {{ snackbarMessage }}
-        <v-btn
-          color="white black--text "
-          @click.native="(value = false), (overlay = false)"
-          >Close</v-btn
-        >
-      </v-snackbar>
-    </v-overlay>
-    <!-- ///////////////////////////////////////////////////////////////////////////////// -->
   </v-app>
 </template>
 
 <script>
+// eslint-disable-next-line no-unused-vars
 import axios from "axios";
 export default {
   name: "event",
@@ -196,14 +177,7 @@ export default {
         requiredTime: value => !!value || "กรุณาระบุเวลา กิจกรรม/โครงการ",
         requiredDetail: value =>
           !!value || "กรุณาระบุรายละเอียด กิจกรรม/โครงการ"
-      },
-      snackbar: false,
-      alert: false,
-      snackbarMessage: "",
-      snackbarStatus: "",
-      snackbarColor: "",
-      overlay: false,
-      timeout: 2250
+      }
     };
   },
   watch: {
@@ -223,11 +197,14 @@ export default {
         )
         // eslint-disable-next-line no-unused-vars
         .then(response => {
-          this.overlay = true;
-          this.snackbar = true;
-          this.snackbarMessage = `เพิ่ม กิจกรรม ข่าวสารสำเร็จ `;
-          this.snackbarStatus = "";
-          this.snackbarColor = "success";
+          /*
+           * Use SweetAlert
+           */
+          this.$swal.fire({
+            icon: "success",
+            title: "เพิ่มข่าวสาร กิจกรรม ใหม่ สำเร็จ",
+            text: ""
+          });
         })
         // eslint-disable-next-line no-unused-vars
         .catch(error => {
@@ -238,6 +215,7 @@ export default {
           this.snackbarColor = "error";
         });
       this.$refs.form.reset();
+
       // console.log(this.evenDetail);
     }
   }

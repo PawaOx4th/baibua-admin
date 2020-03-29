@@ -4,6 +4,7 @@
     <v-content fluid>
       <router-view> </router-view>
     </v-content>
+    <Footer />
   </div>
 </template>
 
@@ -11,22 +12,23 @@
 import firebase from "firebase";
 // import TopHeader from "../components/Top-Header";
 import Navber from "../components/Navber";
+import Footer from "../components/Footer";
 
 export default {
   name: "home",
   components: {
     // TopHeader
-
+    Footer,
     Navber
   },
-   beforeCreate() {
-    firebase.auth().onAuthStateChanged((user) => {
-        if (!user) {
-          this.$router.replace("/")
-          alert("You don't have a permission")
-        }
+  beforeCreate() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (!user) {
+        this.$router.replace("/");
+        alert("You don't have a permission");
+      }
     });
-  },
+  }
 };
 </script>
 

@@ -34,4 +34,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+#subject {
+  height: 100%;
+  width: 100%;
+
+  background-color: rgb(239, 248, 255);
+}
+</style>

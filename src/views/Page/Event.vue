@@ -32,20 +32,7 @@ export default {
   computed: {},
   mounted() {},
   methods: {
-    // async addEvent(e) {
-    //   console.log(e);
-    //   // await axios
-    //   //   .post(
-    //   //     "https://us-central1-newagent-47c20.cloudfunctions.net/api/news",
-    //   //     e
-    //   //   )
-    //   //   .then(response => {
-    //   //     console.log(response.status);
-    //   //   })
-    //   //   .catch(error => {
-    //   //     console.log(error.status);
-    //   //   });
-    // }
+   
   }
 };
 </script>

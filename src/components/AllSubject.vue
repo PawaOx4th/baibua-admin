@@ -75,6 +75,7 @@
 
     <v-container
       class=" d-flex justify-start align-center flex-wrap  pa-10"
+      id="container"
       fluid
     >
       <v-row dense>
@@ -242,6 +243,10 @@ export default {
 
 #card :hover {
   border: 10px solid #238aeb;
+}
+
+#container {
+  height: 100%;
 }
 </style>
 

@@ -13,14 +13,14 @@
   <v-app id="inspire">
     <div id="bglogin">
       <v-container class="fill-height " fluid id="container">
-        <v-row align="center" justify="end" class="mr-12">
-          <v-col cols="12" sm="8" md="4">
+        <v-row align="center" justify="end">
+          <v-col cols="12" sm="12" md="4">
             <v-hover v-slot:default="{ hover }">
               <v-card class="elevation-12" :elevation="hover ? 12 : 2">
-                <v-toolbar color="#257F9C" dark>
+                <v-toolbar color="#57BFFF" dark>
                   <v-toolbar-title>Login Admin</v-toolbar-title>
                 </v-toolbar>
-                <v-card-text>
+                <v-card-text class="pa-10">
                   <v-form @submit.prevent="pressed">
                     <v-text-field
                       label="Login"
@@ -28,7 +28,7 @@
                       prepend-icon="person"
                       type="text"
                       v-model="email"
-                      outlined
+                      class="ma-5"
                     />
 
                     <v-text-field
@@ -38,7 +38,7 @@
                       prepend-icon="lock"
                       type="password"
                       v-model="password"
-                      outlined
+                      class="ma-5"
                       @keyup.enter="pressed"
                     />
 
@@ -51,10 +51,9 @@
                   <v-spacer />
                   <v-btn
                     block
-                    outlined
-                    color="#435B90"
+                    color="#57BFFF"
                     @click="pressed"
-                    class="#435B90--text"
+                    class="white--text"
                     >Login</v-btn
                   >
                   <!-- <v-btn color="primary" @click.alt="defultData">Login</v-btn> -->
@@ -128,19 +127,25 @@ export default {
 <style scoped>
 #bglogin {
   height: 100%;
+  width: 100%;
+  background-color: aqua;
   /* background-image: url("https://images.unsplash.com/photo-1508020963102-c6c723be5764?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"); */
   /* filter: blur(8px); */
-  background-image: url("../assets/img/Mockup.svg");
-  background-position: left;
+  background-image: url("../assets/img/Background/SVG/Artboard 1.svg");
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 #container {
-  background-image: url("../assets/PhotonBlue.svg");
+  /* height: 100%;
+  width: 100%; */
+  /* background-image: url("../assets/PhotonBlue.svg"); */
+  /* background-image: url("../assets/img/Background/mobile-bg-svg.svg");
   background-position: center;
+
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
 }
 
 #card {
