@@ -73,6 +73,7 @@ export default {
   data() {
     return {
       tab: false,
+
       bg: "../assets/background/bg1.jpg",
       menu: [
         {
