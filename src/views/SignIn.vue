@@ -9,6 +9,7 @@
         //  Set Style in css id="left"
         //  Hidden only on xs
        -->
+
       <v-col md="7" cols="12" class="d-none d-sm-flex" id="left">
         <div></div>
       </v-col>
@@ -126,6 +127,7 @@ export default {
     return {
       size: "",
       show: false,
+
       email: "",
       password: "",
       error: "",
@@ -153,7 +155,6 @@ export default {
     },
     windowSize() {
       if (this.windowSize.x <= 600) {
-        console.log(this.windowSize.x + "***" + this.windowSize.y);
         this.color = false;
       } else {
         this.color = true;

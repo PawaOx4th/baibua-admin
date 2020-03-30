@@ -12,7 +12,8 @@
       <!-- 
        * Button
       -->
-      <SignOut />
+      <!-- <SignOut /> -->
+      <Time />
     </v-app-bar>
 
     <v-navigation-drawer
@@ -24,12 +25,14 @@
     >
       <v-list>
         <v-list-item>
-          <v-list-item-avatar>
-            <v-img src="../assets/icon.gif" contain></v-img>
+          <v-list-item-avatar size="75">
+            <v-img src="../assets/icon.gif"></v-img>
           </v-list-item-avatar>
 
           <v-list-item-content>
-            <v-list-item-title class="white--text">Admin</v-list-item-title>
+            <v-list-item-title class="white--text display-1 "
+              >Admin</v-list-item-title
+            >
           </v-list-item-content>
         </v-list-item>
         <!--  -->
@@ -65,10 +68,12 @@
 
 <script>
 import SignOut from "../components/SignOut";
+import Time from "../components/Time";
 export default {
   name: "navber",
   components: {
-    SignOut
+    SignOut,
+    Time
   },
   data() {
     return {
@@ -90,7 +95,7 @@ export default {
         },
         {
           title: "นักศึกษา",
-          icon: "mdi-account-details-outline",
+          icon: "mdi-account-multiple",
           route: "/student",
           stusus: "info"
         },
