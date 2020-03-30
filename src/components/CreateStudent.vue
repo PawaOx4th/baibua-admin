@@ -3,7 +3,7 @@
   <v-dialog v-model="dialog" max-width="800px" transition="dialog-transition">
     <template v-slot:activator="{ on }">
       <v-container class="mt-12  d-flex flex-row justify-end">
-        <v-btn v-on="on" color="#179EE0" x-large class="white--text"
+        <v-btn v-on="on" color="#2389EB" x-large class="white--text"
           >เพิ่มนักศึกษา</v-btn
         >
       </v-container>

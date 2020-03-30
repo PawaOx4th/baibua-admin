@@ -24,7 +24,6 @@
                 <!-- 
                   * Logo
                  -->
-
                 <v-img
                   src="../assets/Logo/Baibua-Logo-horizontal.png"
                   height="120px"
@@ -82,66 +81,11 @@
           </v-row>
         </v-container>
       </v-col>
-
-      <!-- 
-        // Section 2 Responsive
-       -->
-      <!-- <v-col
-        md="5"
-        cols="12"
-        class=" d-flex d-sm-none"
-        align="Stretch"
-        id="form"
-      >
-        <v-container fill-height fluid>
-          <v-row align="center" justify="center">
-            <v-col align="center">
-              <v-card elevation="0" class="pa-5" id="card">
-                <div class="display-2">Login</div>
-                <v-form @submit.prevent="pressed">
-                  <v-text-field
-                    label="Login"
-                    name="login"
-                    prepend-icon="person"
-                    type="text"
-                    v-model="email"
-                    class="ma-5"
-                  />
-
-                  <v-text-field
-                    id="password"
-                    label="Password"
-                    name="password"
-                    prepend-icon="lock"
-                    type="password"
-                    v-model="password"
-                    class="ma-5"
-                    @keyup.enter="pressed"
-                  />
-
-                  <div class="error--text" v-if="error">
-                    {{ error.message }}
-                  </div>
-                </v-form>
-                <v-card-actions>
-                  <v-spacer />
-                  <v-btn
-                    block
-                    color="#57BFFF"
-                    @click="pressed"
-                    class="white--text"
-                    elevation="0"
-                    x-large
-                    >Login</v-btn
-                  >
-                </v-card-actions>
-              </v-card>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-col> -->
     </v-row>
 
+    <!-- 
+  * Londing
+ -->
     <v-overlay :value="overlay" opacity="0.8">
       <v-img src="../assets/Spinner.gif"> </v-img>
     </v-overlay>

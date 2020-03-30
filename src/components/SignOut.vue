@@ -1,11 +1,18 @@
 <template>
-  <div id="topheader">
+  <div id="SignOut">
     <!-- Logged in
     <span v-if="loggedIn">Yes</span>
     <span v-else>No</span> -->
 
     <div>
-      <v-btn color="error" @click="signOut">Sign Out</v-btn>
+      <v-btn
+        color="#F44336"
+        block
+        class="white--text"
+        elevation="0"
+        @click="signOut"
+        >Sign Out</v-btn
+      >
     </div>
   </div>
 </template>
@@ -15,7 +22,7 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 
 export default {
-  name: "topheader",
+  name: "SignOut",
   data() {
     return {
       loggedIn: false

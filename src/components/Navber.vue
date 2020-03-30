@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <v-app-bar app color="#405375">
+    <v-app-bar app color="#4869DA">
       <v-app-bar-nav-icon
         @click.stop="tab = !tab"
         class="white--text"
@@ -9,19 +9,23 @@
 
       <v-spacer></v-spacer>
 
-      <!-- <v-btn target="_blank">
-          <span class="mr-2">Sign Out</span>
-
-          <v-icon color="red" size="30px">all_inbox</v-icon>
-        </v-btn> -->
-      <TopHeader />
+      <!-- 
+       * Button
+      -->
+      <SignOut />
     </v-app-bar>
 
-    <v-navigation-drawer app color="#405375" v-model="tab" temporary>
+    <v-navigation-drawer
+      app
+      v-model="tab"
+      src="../assets/background/bgline.jpg"
+      temporary
+      width="320px"
+    >
       <v-list>
         <v-list-item>
           <v-list-item-avatar>
-            <v-img src="../assets/icon.gif"></v-img>
+            <v-img src="../assets/icon.gif" contain></v-img>
           </v-list-item-avatar>
 
           <v-list-item-content>
@@ -40,30 +44,36 @@
           :to="item.route"
         >
           <v-list-item-icon>
-            <v-icon class="white--text" medium>{{ item.icon }}</v-icon>
+            <v-icon class="white--text " large>{{ item.icon }}</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="white--text">{{
+            <v-list-item-title class="white--text font-weight-regular title">{{
               item.title
             }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      <template v-slot:append>
+        <div class="pa-2">
+          <SignOut />
+        </div>
+      </template>
     </v-navigation-drawer>
   </nav>
 </template>
 
 <script>
-import TopHeader from "../components/Top-Header";
+import SignOut from "../components/SignOut";
 export default {
   name: "navber",
   components: {
-    TopHeader
+    SignOut
   },
   data() {
     return {
       tab: false,
+      bg: "../assets/background/bg1.jpg",
       menu: [
         {
           title: "กิจกรรม",
