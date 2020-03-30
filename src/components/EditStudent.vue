@@ -48,11 +48,11 @@
               <!-- //**  Student ID -->
               <v-text-field
                 v-model="studentData.Id"
-                :counter="13"
+                :counter="14"
                 clearable
-                maxlength="13"
+                maxlength="14"
                 label="รหัสนักศึกษา"
-                hint="เลขประจำตัวนักศึกษา 13 หลัก ไม่ต้องใส่ขีด"
+                hint="เลขประจำตัวนักศึกษา 13 หลัก ใส่ขีด"
                 required
               ></v-text-field>
             </v-col>
