@@ -365,13 +365,13 @@ export default {
   },
 
   methods: {
-    createSection() {
+    async createSection() {
       // console.dir(this.Section);
       this.Section.Date = this.date;
 
       this.Section.Year = this.yaerfild.toString();
       let url = "https://us-central1-newagent-47c20.cloudfunctions.net/api/sec";
-      axios
+      await axios
         .post(url, this.Section)
         // eslint-disable-next-line no-unused-vars
         .then(response => {
@@ -380,9 +380,11 @@ export default {
           this.snackbarMessage = `เพิ่ม กลุ่ม ${this.Section.Subject} สำเร็จ `;
           this.snackbarStatus = "";
           this.snackbarColor = "success";
+          console.log("then");
         })
         // eslint-disable-next-line no-unused-vars
         .catch(err => {
+          console.log("err");
           this.overlay = true;
           this.snackbar = true;
           this.snackbarMessage = `เกิดข้อผิดพลาด กรุณาตรวจสอบข้อมูล และลองใหม่อีกครั้ง`;
