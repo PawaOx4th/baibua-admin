@@ -3,15 +3,23 @@
     <v-hover v-slot:default="{ hover }">
       <v-card :elevation="hover ? 10 : 2">
         <v-card-title>
-          <div class="display-1 font-weight-bold ">เพิ่มกลุ่มเรียน</div>
+          <div class="display-1 font-weight-bold">เพิ่มกลุ่มเรียน</div>
         </v-card-title>
         <v-card-text>
           <v-container>
-            <v-form ref="form" v-model="valid" :lazy-validation="lazy">
+            <v-form
+              ref="form"
+              v-model="valid"
+              :lazy-validation="lazy"
+            >
               <v-row>
                 <!-- ///////////////////////////////////////////////////////////////////////////////// -->
                 <!-- //* Sec Input -->
-                <v-col cols="12" sm="6" md="3">
+                <v-col
+                  cols="12"
+                  sm="6"
+                  md="3"
+                >
                   <v-text-field
                     label=" * ลำดับกลุ่มเรียน"
                     hint="ระบุเป็นตัวเลขเท่านั้นห้ามมีสัญลักษณ์"
@@ -22,7 +30,11 @@
                 </v-col>
                 <!-- ///////////////////////////////////////////////////////////////////////////////// -->
                 <!-- //* Subject Input -->
-                <v-col cols="12" sm="6" md="3">
+                <v-col
+                  cols="12"
+                  sm="6"
+                  md="3"
+                >
                   <v-text-field
                     label=" * รหัสวิชา"
                     hint="ระบุเป็นตัวเลขเท่านั้นห้ามมีสัญลักษณ์"
@@ -33,7 +45,11 @@
                 </v-col>
                 <!-- ///////////////////////////////////////////////////////////////////////////////// -->
                 <!-- //* Subject Date -->
-                <v-col cols="12" sm="6" md="5">
+                <v-col
+                  cols="12"
+                  sm="6"
+                  md="5"
+                >
                   <v-menu
                     ref="menu"
                     v-model="menu"
@@ -52,35 +68,53 @@
                         v-on="on"
                       ></v-text-field>
                     </template>
-                    <v-date-picker v-model="date" no-title scrollable>
+                    <v-date-picker
+                      v-model="date"
+                      no-title
+                      scrollable
+                    >
                       <v-spacer></v-spacer>
-                      <v-btn text color="primary" @click="menu = false"
-                        >Cancel</v-btn
-                      >
-                      <v-btn text color="primary" @click="$refs.menu.save(date)"
-                        >OK</v-btn
-                      >
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="menu = false"
+                      >Cancel</v-btn>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="$refs.menu.save(date)"
+                      >OK</v-btn>
                     </v-date-picker>
                   </v-menu>
                 </v-col>
                 <!-- ///////////////////////////////////////////////////////////////////////////////// -->
               </v-row>
               <!-- //******************************************************************************************* */ -->
-              <v-row row wrap>
+              <v-row
+                row
+                wrap
+              >
                 <!-- ///////////////////////////////////////////////////////////////////////////////// -->
                 <!-- //* Week Study -->
-                <v-col cols="12" sm="6" md="3">
+                <v-col
+                  cols="12"
+                  sm="6"
+                  md="3"
+                >
                   <v-select
                     :items="dayName"
                     v-model="Section.Week"
                     label=" * วันที่เรียน"
                     hint="เลือกวันที่เรียน"
-                  >
-                  </v-select>
+                  ></v-select>
                 </v-col>
                 <!-- ///////////////////////////////////////////////////////////////////////////////// -->
                 <!-- //* Study Time Start -->
-                <v-col cols="12" sm="6" md="4">
+                <v-col
+                  cols="12"
+                  sm="6"
+                  md="4"
+                >
                   <v-menu
                     ref="menu"
                     v-model="menuTimeStart"
@@ -114,7 +148,11 @@
                 </v-col>
                 <!-- ///////////////////////////////////////////////////////////////////////////////// -->
                 <!-- //* Study Time End -->
-                <v-col cols="12" sm="6" md="4">
+                <v-col
+                  cols="12"
+                  sm="6"
+                  md="4"
+                >
                   <v-menu
                     ref="menu"
                     v-model="menuTimeEnd"
@@ -148,7 +186,11 @@
                 </v-col>
                 <!-- ///////////////////////////////////////////////////////////////////////////////// -->
                 <!-- //* Teacher1 -->
-                <v-col cols="12" sm="6" md="4">
+                <v-col
+                  cols="12"
+                  sm="6"
+                  md="4"
+                >
                   <v-select
                     :items="TeacherALL"
                     item-text="NameTH"
@@ -158,7 +200,11 @@
                     :rules="RuleTearcher"
                   ></v-select>
                 </v-col>
-                <v-col cols="12" sm="6" md="4">
+                <v-col
+                  cols="12"
+                  sm="6"
+                  md="4"
+                >
                   <v-select
                     :items="TeacherALL"
                     item-text="NameTH"
@@ -167,7 +213,11 @@
                     v-model="Section.Teacher2"
                   ></v-select>
                 </v-col>
-                <v-col cols="12" sm="6" md="4">
+                <v-col
+                  cols="12"
+                  sm="6"
+                  md="4"
+                >
                   <v-select
                     :items="TeacherALL"
                     item-text="NameTH"
@@ -179,23 +229,28 @@
               </v-row>
             </v-form>
           </v-container>
-          <v-row class="d-flex justify-end align-start pr-4 ">
-            <v-col md="8" class="pa-0">
+          <v-row class="d-flex justify-end align-start pr-4">
+            <v-col
+              md="8"
+              class="pa-0"
+            >
               <v-alert
                 dense
                 border="left"
                 type="error"
                 class="pa-2"
                 v-show="valid"
-                >กรุณาตรวจสอบข้อมูลให้เรียบร้อยก่อนกดยืนยัน
-              </v-alert>
+              >กรุณาตรวจสอบข้อมูลให้เรียบร้อยก่อนกดยืนยัน</v-alert>
             </v-col>
           </v-row>
         </v-card-text>
         <v-card-actions>
-          <v-alert dense outlined type="warning" class="ma-0 ml-3">
-            กรุณาระบุบ อาจารย์ประจำวิชาอย่างน้อย 1 ท่าน
-          </v-alert>
+          <v-alert
+            dense
+            outlined
+            type="warning"
+            class="ma-0 ml-3"
+          >กรุณาระบุบ อาจารย์ประจำวิชาอย่างน้อย 1 ท่าน</v-alert>
           <v-spacer></v-spacer>
           <!-- <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn> -->
           <v-btn
@@ -205,8 +260,7 @@
             width="200"
             class="ma-3 white--text"
             @click="createSection"
-            >Create</v-btn
-          >
+          >Create</v-btn>
         </v-card-actions>
       </v-card>
     </v-hover>
@@ -224,8 +278,7 @@
         <v-btn
           color="white black--text"
           @click.native="(value = false), (overlay = false)"
-          >Close</v-btn
-        >
+        >Close</v-btn>
       </v-snackbar>
     </v-overlay>
   </div>
@@ -371,6 +424,7 @@ export default {
 
       this.Section.Year = this.yaerfild.toString();
       let url = "https://us-central1-newagent-47c20.cloudfunctions.net/api/sec";
+
       await axios
         .post(url, this.Section)
         // eslint-disable-next-line no-unused-vars
@@ -380,11 +434,9 @@ export default {
           this.snackbarMessage = `เพิ่ม กลุ่ม ${this.Section.Subject} สำเร็จ `;
           this.snackbarStatus = "";
           this.snackbarColor = "success";
-          console.log("then");
         })
         // eslint-disable-next-line no-unused-vars
         .catch(err => {
-          console.log("err");
           this.overlay = true;
           this.snackbar = true;
           this.snackbarMessage = `เกิดข้อผิดพลาด กรุณาตรวจสอบข้อมูล และลองใหม่อีกครั้ง`;

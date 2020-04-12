@@ -8,6 +8,7 @@ import SignIn from "../views/SignIn";
 import SignUp from "../views/SignUp";
 import Event from "../views/Page/Event";
 import User from "../views/Page/User";
+import DashBoard from "../views/Page/DashBoard";
 import Subject from "../views/Page/Subject";
 import Section from "../views/Page/Section";
 import Student from "../views/Page/Student";
@@ -21,6 +22,7 @@ const routes = [
     name: "home",
     children: [
       { path: "/event", component: Event, name: "event" },
+      { path: "/dashBoard", component: DashBoard, name: "dashBoard" },
 
       {
         path: "/user",

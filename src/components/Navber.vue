@@ -82,11 +82,18 @@ export default {
       bg: "../assets/background/bg1.jpg",
       menu: [
         {
+          title: "รายละเอียด",
+          icon: "mdi-collage",
+          route: "/dashBoard",
+          stusus: "warning"
+        },
+        {
           title: "กิจกรรม",
           icon: "mdi-image",
           route: "/event",
           stusus: "warning"
         },
+       
         {
           title: "ผู้ใช้งานระบบ",
           icon: "mdi-account-details-outline",
@@ -111,12 +118,7 @@ export default {
           route: "/section",
           stusus: "success"
         },
-        {
-          title: "ตั้งค่า",
-          icon: "mdi-help-box",
-          route: "/popup",
-          stusus: "success"
-        }
+       
       ]
     };
   },

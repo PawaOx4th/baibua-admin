@@ -2,7 +2,7 @@
   <div id="home">
     <Navber />
     <v-content fluid>
-      <router-view> </router-view>
+      <router-view></router-view>
     </v-content>
     <Footer />
   </div>
