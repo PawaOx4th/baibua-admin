@@ -1,13 +1,31 @@
 <template>
   <v-app id="event">
-    <v-flex xs12 sm12 md12>
+    <v-flex
+      xs12
+      sm12
+      md12
+    >
       <v-container>
         <v-row class="d-flex flex-row align-center">
-          <v-col class="d-flex flex-row align-center" cols="12">
-            <v-form ref="form" v-model="isValid">
+          <v-col
+            class="d-flex flex-row align-center"
+            cols="12"
+          >
+            <v-form
+              ref="form"
+              v-model="isValid"
+            >
               <v-card class="pa-5">
-                <v-layout row wrap>
-                  <v-flex xs12 sm1 md12 class="ml-6">
+                <v-layout
+                  row
+                  wrap
+                >
+                  <v-flex
+                    xs12
+                    sm1
+                    md12
+                    class="ml-6"
+                  >
                     <!-- Top -->
                     <!--//************* search Event *************** -->
 
@@ -17,9 +35,15 @@
 
                     <!-- Center -->
 
-                    <v-layout row wrap>
+                    <v-layout
+                      row
+                      wrap
+                    >
                       <!--//***************** Event Name  ***********************-->
-                      <v-flex xs12 md5>
+                      <v-flex
+                        xs12
+                        md5
+                      >
                         <!-- <div class="caption gray-text">Name Project</div> -->
                         <v-text-field
                           v-model="evenDetail.Topic"
@@ -32,7 +56,10 @@
 
                       <!--//****************  Item Group ****************/  -->
                       <div class="mr-10"></div>
-                      <v-flex xs12 md5>
+                      <v-flex
+                        xs12
+                        md5
+                      >
                         <v-overflow-btn
                           :items="items"
                           label="-"
@@ -44,7 +71,10 @@
                       </v-flex>
 
                       <!--//**************** Data Picker ***************/  -->
-                      <v-flex xs12 md5>
+                      <v-flex
+                        xs12
+                        md5
+                      >
                         <v-menu
                           v-model="menu3"
                           :close-on-content-click="false"
@@ -66,12 +96,16 @@
                             v-model="evenDetail.Date"
                             @input="menu3 = false"
                             locale="th"
+                            :min="nowDate"
                           ></v-date-picker>
                         </v-menu>
                       </v-flex>
 
                       <!--//**************** Time Picker ***************//  -->
-                      <v-flex xs12 md5>
+                      <v-flex
+                        xs12
+                        md5
+                      >
                         <v-menu
                           ref="menu"
                           v-model="menu2"
@@ -104,7 +138,11 @@
                       </v-flex>
 
                       <!--//**************** Text Area ***************//  -->
-                      <v-flex xs12 md12 pa-3>
+                      <v-flex
+                        xs12
+                        md12
+                        pa-3
+                      >
                         <v-textarea
                           v-model="evenDetail.Description"
                           outlined
@@ -114,15 +152,19 @@
                           :rules="[rulers.requiredDetail]"
                         ></v-textarea>
                       </v-flex>
-                      <v-flex xs12 md12 pa-3 class="d-flex flex-row-reverse">
+                      <v-flex
+                        xs12
+                        md12
+                        pa-3
+                        class="d-flex flex-row-reverse"
+                      >
                         <v-btn
                           color="info"
                           height="50"
                           width="200"
                           :disabled="!isValid"
                           @click="addEvent"
-                          >Submit</v-btn
-                        >
+                        >Submit</v-btn>
                       </v-flex>
                     </v-layout>
                   </v-flex>
@@ -162,6 +204,7 @@ export default {
         Date: "",
         Time: ""
       },
+      nowDate: new Date().toISOString().slice(0, 10),
       offsetTop: 0,
       isValid: true,
       show: false,

@@ -234,11 +234,11 @@ export default {
 
 <style>
 .subject.close {
-  border-left: 10px solid #f4511e;
+  border-left: 10px solid #ff5b29 !important;
 }
 
 .subject.open {
-  border-left: 10px solid #238aeb;
+  border-left: 10px solid #238aeb !important;
 }
 
 #card :hover {
@@ -250,4 +250,4 @@ export default {
 }
 </style>
 
-// :class="`pa-3 subject ${subject.Type === 1 ? `close` : `open`} `"
+

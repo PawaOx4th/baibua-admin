@@ -39,6 +39,6 @@ export default {
   height: 100%;
   width: 100%;
 
-  background-color: rgb(239, 248, 255);
+ 
 }
 </style>

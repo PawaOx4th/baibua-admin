@@ -50,9 +50,9 @@
                 v-model="studentData.Id"
                 :counter="14"
                 clearable
-                maxlength="14"
+                maxlength="13"
                 label="รหัสนักศึกษา"
-                hint="เลขประจำตัวนักศึกษา 13 หลัก ใส่ขีด"
+                hint="เลขประจำตัวนักศึกษา 13 หลัก ไม่ใส่ขีด"
                 required
               ></v-text-field>
             </v-col>

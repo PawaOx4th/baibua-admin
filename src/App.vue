@@ -1,6 +1,9 @@
 <template>
   <v-app>
-    <v-container class=" pa-0" fluid>
+    <v-container
+      class=" pa-0"
+      fluid
+    >
       <router-view></router-view>
     </v-container>
   </v-app>
@@ -25,5 +28,6 @@ export default {
 *,
 html {
   font-family: "Kanit";
+  background-color: #eff8ff;
 }
 </style>

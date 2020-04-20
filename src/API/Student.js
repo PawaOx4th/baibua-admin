@@ -20,3 +20,5 @@ export async function modifyStudent(id, data) {
 
   return result;
 }
+
+
